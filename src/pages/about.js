@@ -5,7 +5,7 @@ import Image from "next/image";
 import AnimatedText from "@/components/AnimatedText";
 import Layout from "@/components/Layout";
 import Skills from "@/components/Skills";
-import profilePicture from "../../public/images/photo.png";
+import ProfilePicture from "../../public/images/photo.png";
 import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 
@@ -104,7 +104,7 @@ const about = () => {
                                     bg-dark
                                 "
                             />
-                            <Image src={profilePicture} alt="Rafi" className="w-full h-auto rounded-2xl" />
+                            <Image src={ProfilePicture} alt="Rafi" className="w-full h-auto rounded-2xl" />
                         </div>
 
                         <div className="col-span-2 flex flex-col items-end justify-between">
