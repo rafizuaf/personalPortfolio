@@ -87,7 +87,7 @@ const Skills = () => {
                     Web
                 </motion.div>
 
-                <Skill name='CSS' x='-6vw' y='0vw'/>
+                <Skill name='CSS' x='5vw' y='0vw'/>
                 <Skill name='HTML' x='-8vw' y='4vw'/>
                 <Skill name='JavaScript' x='14vw' y='4vw'/>
                 <Skill name='React.js' x='0vw' y='12vw'/>

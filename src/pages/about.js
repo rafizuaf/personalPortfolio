@@ -6,6 +6,8 @@ import AnimatedText from "@/components/AnimatedText";
 import Layout from "@/components/Layout";
 import Skills from "@/components/Skills";
 import profilePicture from "../../public/images/photo.png";
+import Experience from "@/components/Experience";
+import Education from "@/components/Education";
 
 const AnimatedNumbers = ({ value }) => {
     const ref = useRef(null);
@@ -51,7 +53,7 @@ const about = () => {
                             <h2 className="mb-4 text-lg font-bold uppercase text-dark/75">
                                 Say no more!
                             </h2>
-                            <p className="font-md">
+                            <p className="font-medium">
                                 Hi! I'm <span className="font-bold">Rafi,</span> a bachelor degree of Mechanical Engineering from
                                 Mercu Buana University. Graduated Full-Stack Web Developer
                                 bootcamp program from harisenin.com for deepening skills in Web
@@ -59,12 +61,12 @@ const about = () => {
                                 with JavaScript, React.js, Next.js, Node.js, Express.js, MongoDB
                                 and MySQL.
                             </p>
-                            <p className="font-md my-4">
+                            <p className="font-medium my-4">
                                 I believe that design is about more than just making things look
                                 pretty – it's about solving problems and creating intuitive,
                                 enjoyable experiences for users.
                             </p>
-                            <p className="font-md">
+                            <p className="font-medium">
                                 I'm specialized in quickly learning new skills and programming
                                 languages, implementing clean code principles, and creating
                                 responsive designs that optimize website performance. Has
@@ -138,6 +140,9 @@ const about = () => {
                     </div>
 
                     <Skills />
+                    <Experience />
+                    <Education />
+                    
 
                 </Layout>
             </main>
