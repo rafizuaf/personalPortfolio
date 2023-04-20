@@ -45,8 +45,8 @@ const about = () => {
             <main className="flex w-full flex-col items-center justify-center">
                 <Layout className="pt-16">
                     <AnimatedText
-                        className="!text-3xl mb-16"
-                        text='"So, how do we know that you are a good candidate?"'
+                        className="!text-4xl mb-16"
+                        text='"How do we know that you are a good candidate?"'
                     />
                     <div className="grid w-full grid-cols-8 gap-16">
                         <div className="col-span-3 flex flex-col items-start justify-start">
@@ -57,17 +57,15 @@ const about = () => {
                                 Hi! I'm <span className="font-bold">Rafi,</span> a bachelor degree of Mechanical Engineering from
                                 Mercu Buana University. Graduated Full-Stack Web Developer
                                 bootcamp program from harisenin.com for deepening skills in Web
-                                Developer. Experienced as a Full Stack Web Developer who works
+                                Development.
+                            </p>
+                            <p className="font-medium my-4">
+                                Experienced as a Full Stack Web Developer who works
                                 with JavaScript, React.js, Next.js, Node.js, Express.js, MongoDB
                                 and MySQL.
                             </p>
-                            <p className="font-medium my-4">
-                                I believe that design is about more than just making things look
-                                pretty – it's about solving problems and creating intuitive,
-                                enjoyable experiences for users.
-                            </p>
                             <p className="font-medium">
-                                I'm specialized in quickly learning new skills and programming
+                                Specialized in quickly learning new skills and programming
                                 languages, implementing clean code principles, and creating
                                 responsive designs that optimize website performance. Has
                                 strengths in problem-solving, website optimization, discipline,
