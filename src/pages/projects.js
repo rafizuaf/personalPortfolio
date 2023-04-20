@@ -30,8 +30,24 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                 bg-light
                 shadow-2xl
                 p-12
+                relative
+                rounded-br-2xl
             '
         >
+
+            <div
+                className="
+                    absolute 
+                    top-0 
+                    -right-4 
+                    -z-10 
+                    w-[101%] 
+                    h-[103%] 
+                    rounded-[2.5rem] 
+                    bg-dark
+                    rounded-br-3xl
+                "
+            />
             <Link
                 className='w-1/2 cursor-pointer overflow-hidden rounded-lg'
                 href={link} 
@@ -40,7 +56,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                 <Image 
                     src={img} 
                     alt={title} 
-                    className='w-full h-auto' 
+                    className='max-w-[720px] max-h-[360px] object-cover' 
                 />
             </Link>
 
@@ -141,8 +157,22 @@ const Project = ({ title, type, img, link, github }) => {
                 bg-light 
                 p-6 
                 relative
+                rounded-br-xl
             '
         >
+            <div
+                className="
+                    absolute 
+                    top-0 
+                    -right-3 
+                    -z-10 
+                    w-[101%] 
+                    h-[103%] 
+                    rounded-[2rem] 
+                    bg-dark
+                    rounded-br-3xl
+                "
+            />
             <Link
                 className='w-full cursor-pointer overflow-hidden rounded-lg'
                 href={link} 
@@ -151,7 +181,7 @@ const Project = ({ title, type, img, link, github }) => {
                 <Image 
                     src={img} 
                     alt={title} 
-                    className='w-full h-auto' 
+                    className='max-w-[720px] max-h-[360px] object-cover' 
                 />
             </Link>
 
@@ -235,7 +265,7 @@ const projects = () => {
             <main className='w-full mb-16 flex flex-col items-center justify-center'>
                 <Layout className='pt-16'>
                     <AnimatedText text='Take a look!' className='mb-16' />
-                    <div className='grid grid-cols-12 gap-24'>
+                    <div className='grid grid-cols-12 gap-24 gap-y-32'>
                         <div className='col-span-12'>
                             <FeaturedProject 
                                 title='Netflix Clone' 
