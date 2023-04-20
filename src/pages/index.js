@@ -4,7 +4,7 @@ import Head from "next/head";
 import Layout from "@/components/Layout";
 import AnimatedText from "@/components/AnimatedText";
 
-import profilePic from "../../public/images/pp.png";
+import profilePic from "../../public/images/pp.PNG";
 import Link from "next/link";
 import { DownloadIcon } from "@/components/Icons";
 
