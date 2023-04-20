@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
+import { useInView, useMotionValue, useSpring } from "framer-motion";
 import Head from "next/head";
 import Image from "next/image";
 import AnimatedText from "@/components/AnimatedText";
 import Layout from "@/components/Layout";
+import Skills from "@/components/Skills";
 import profilePicture from "../../public/images/photo.png";
-import { useInView, useMotionValue, useSpring } from "framer-motion";
 
 const AnimatedNumbers = ({ value }) => {
     const ref = useRef(null);
@@ -135,6 +136,9 @@ const about = () => {
                         </div>
 
                     </div>
+
+                    <Skills />
+
                 </Layout>
             </main>
         </>
