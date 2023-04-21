@@ -10,11 +10,11 @@ const Skill = ({ name, x, y }) => {
                         justify-center 
                         rounded-full 
                         font-semibold 
-                        bg-dark 
-                        text-light 
+                        bg-dark dark:bg-light
+                        text-light dark:text-dark
                         py-3
                         px-6 
-                        shadow-dark
+                        shadow-dark dark:shadow-light
                         cursor-pointer
                         absolute
                     '
@@ -25,10 +25,8 @@ const Skill = ({ name, x, y }) => {
                         x:0, y:0
                     }}
                     whileInView={{
-                        x:x, y:y
-                    }}
-                    transition={{
-                        duration: 1.5,
+                        x:x, y:y,
+                        transition: { duration: 1.5 }
                     }}
                     viewport={{
                         once: true,
@@ -63,7 +61,7 @@ const Skills = () => {
                     items-center 
                     justify-center 
                     rounded-full 
-                    bg-circularLight
+                    bg-circularLight dark:bg-circularDark
                 '
             >
 
@@ -74,10 +72,10 @@ const Skills = () => {
                         justify-center 
                         rounded-full 
                         font-semibold 
-                        bg-dark 
-                        text-light 
+                        bg-dark dark:bg-light
+                        text-light dark:text-dark
                         p-5 
-                        shadow-dark
+                        shadow-dark dark:shadow-light
                         cursor-pointer
                     '
                     whileHover={{

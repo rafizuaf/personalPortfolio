@@ -25,10 +25,10 @@ const Details = ({ type, time, place, info }) => {
             <h3 className="font-bold text-2xl">
                 {type}
             </h3>
-            <span className="capitalize font-medium text-dark/75">
+            <span className="capitalize font-medium text-dark/75 dark:text-light/75">
                 {time} |&nbsp;
             </span>
-            <span className="capitalize font-medium text-primary">
+            <span className="capitalize font-medium text-primary dark:text-secondary">
                 {place}
             </span>
             <p className="font-medium w-full">
@@ -56,7 +56,7 @@ const Education = () => {
 
                 <motion.div 
                     style={{ scaleY: scrollYProgress }}
-                    className="absolute left-9 top-0 w-[4px] h-full bg-dark origin-top" />
+                    className="absolute left-9 top-0 w-[4px] h-full bg-dark dark:bg-light origin-top" />
 
                 <ul className="w-full flex flex-col justify-between ml-4">
                     <Details
@@ -65,7 +65,7 @@ const Education = () => {
                         place="Mercu Buana University"
                         info="GPA: 3.11"
                         />
-                    <span className="capitalize text-2xl font-medium text-dark/75 my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex items-start justify-start">
+                    <span className="capitalize text-2xl font-medium text-dark/75 dark:text-light/75 my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex items-start justify-start">
                         Non-formal Education
                     </span>
                     <Details

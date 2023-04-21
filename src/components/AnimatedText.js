@@ -46,7 +46,7 @@ const AnimatedText = ({text, className=""}) => {
                 className={`
                     inline-block 
                     w-full 
-                    text-dark 
+                    text-dark dark:text-light
                     font-bold 
                     capitalize 
                     text-8xl 

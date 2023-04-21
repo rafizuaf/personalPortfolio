@@ -42,7 +42,16 @@ const about = () => {
                 <title>About</title>
                 <meta name="description" content="about me" />
             </Head>
-            <main className="flex w-full flex-col items-center justify-center">
+            <main 
+                className="
+                    flex 
+                    w-full 
+                    flex-col 
+                    items-center 
+                    justify-center
+                    text-dark dark:text-light
+                "
+            >
                 <Layout className="pt-16">
                     <AnimatedText
                         className="!text-4xl mb-16"
@@ -50,11 +59,11 @@ const about = () => {
                     />
                     <div className="grid w-full grid-cols-8 gap-16">
                         <div className="col-span-3 flex flex-col items-start justify-start">
-                            <h2 className="mb-4 text-lg font-bold uppercase text-dark/75">
+                            <h2 className="mb-4 text-lg font-bold uppercase text-dark/75 dark:text-light/75">
                                 Say no more!
                             </h2>
                             <p className="font-medium">
-                                Hi! I'm <span className="font-bold">Rafi,</span> a bachelor degree of Mechanical Engineering from
+                                Hi! I'm <span className="font-bold text-primary dark:text-secondary">Rafi,</span> a bachelor degree of Mechanical Engineering from
                                 Mercu Buana University. Graduated Full-Stack Web Developer
                                 bootcamp program from harisenin.com for deepening skills in Web
                                 Development.
@@ -85,8 +94,8 @@ const about = () => {
                                 rounded-2xl 
                                 border-2 
                                 border-solid 
-                                border-dark 
-                                bg-light 
+                                border-dark dark:border-light/75
+                                bg-light
                                 p-8
                             "
                         >
@@ -99,7 +108,7 @@ const about = () => {
                                     w-[102%] 
                                     h-[103%] 
                                     rounded-[2rem] 
-                                    bg-dark
+                                    bg-dark dark:bg-light/75
                                 "
                             />
                             <Image src={ProfilePicture} alt="Rafi" className="w-full h-auto rounded-2xl" />
@@ -110,7 +119,7 @@ const about = () => {
                                 <span className="inline-block text-7xl font-bold">
                                     <AnimatedNumbers value={50} />+
                                 </span>
-                                <h2 className="text-xl font-medium text-dark/75">
+                                <h2 className="text-xl font-medium text-dark/75 dark:text-light/75">
                                     satisfied clients
                                 </h2>
                                 <p className="text-[10px]">
@@ -121,7 +130,7 @@ const about = () => {
                                 <span className="inline-block text-7xl font-bold">
                                     <AnimatedNumbers value={5}/>+
                                 </span>
-                                <h2 className="text-xl font-medium text-dark/75">
+                                <h2 className="text-xl font-medium text-dark/75 dark:text-light/75">
                                     projects completed
                                 </h2>
                             </div>
@@ -129,7 +138,7 @@ const about = () => {
                                 <span className="inline-block text-7xl font-bold">
                                     <AnimatedNumbers value={1}/>+
                                 </span>
-                                <h2 className="text-xl font-medium text-dark/75">
+                                <h2 className="text-xl font-medium text-dark/75 dark:text-light/75">
                                     years of experience
                                 </h2>
                             </div>

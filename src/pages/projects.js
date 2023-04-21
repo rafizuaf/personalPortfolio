@@ -26,8 +26,8 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                 rounded-3xl 
                 border 
                 border-solid 
-                border-dark
-                bg-light
+                border-dark dark:border-light
+                bg-light dark:bg-dark
                 shadow-2xl
                 p-12
                 relative
@@ -44,7 +44,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                     w-[101%] 
                     h-[103%] 
                     rounded-[2.5rem] 
-                    bg-dark
+                    bg-dark dark:bg-light
                     rounded-br-3xl
                 "
             />
@@ -72,7 +72,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
             >
                 <span 
                     className='
-                        text-primary
+                        text-primary dark:text-secondary
                         font-medium
                         text-xl
                     '
@@ -91,6 +91,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                             text-left
                             text-4xl
                             font-bold
+                            text-dark dark:text-light
                         '
                     >
                         {title}
@@ -100,7 +101,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                     className='
                         my-2 
                         font-medium 
-                        text-dark 
+                        text-dark dark:text-light
                     '
                 >
                     {summary}
@@ -115,7 +116,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                     <Link 
                         href={github} 
                         target='_blank'
-                        className='w-10'
+                        className='w-10 text-dark dark:text-light'
                     >
                         <GithubIcon />
                     </Link>
@@ -125,8 +126,8 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                         className='
                             ml-4
                             rounded-lg
-                            bg-dark
-                            text-light
+                            bg-dark dark:bg-light
+                            text-light dark:text-dark
                             p-2
                             px-6
                             text-lg
@@ -153,8 +154,8 @@ const Project = ({ title, type, img, link, github }) => {
                 rounded-2xl 
                 border 
                 border-solid 
-                border-dark 
-                bg-light 
+                border-dark dark:border-light
+                bg-light dark:bg-dark
                 p-6 
                 relative
                 rounded-br-xl
@@ -169,7 +170,7 @@ const Project = ({ title, type, img, link, github }) => {
                     w-[101%] 
                     h-[103%] 
                     rounded-[2rem] 
-                    bg-dark
+                    bg-dark dark:bg-light
                     rounded-br-3xl
                 "
             />
@@ -197,7 +198,7 @@ const Project = ({ title, type, img, link, github }) => {
             >
                 <span 
                     className='
-                        text-primary
+                        text-primary dark:text-secondary
                         font-medium
                         text-xl
                     '
@@ -216,6 +217,7 @@ const Project = ({ title, type, img, link, github }) => {
                             text-left
                             text-3xl
                             font-bold
+                            text-dark dark:text-light
                         '
                     >
                         {title}
@@ -237,6 +239,7 @@ const Project = ({ title, type, img, link, github }) => {
                             text-lg
                             font-semibold
                             underline
+                            text-dark dark:text-light
                         '
                     >
                         Demo
@@ -244,7 +247,7 @@ const Project = ({ title, type, img, link, github }) => {
                     <Link 
                         href={github} 
                         target='_blank'
-                        className='w-8'
+                        className='w-8 text-dark dark:text-light'
                     >
                         <GithubIcon />
                     </Link>
@@ -309,9 +312,9 @@ const projects = () => {
                             <Project 
                                 title='JavaScript Technical Documentation Page' 
                                 img={Project3}
-                                link='https://freecodecamp-survey-form-six.vercel.app/'
+                                link='https://freecodecamp-techdocpage.vercel.app/'
                                 type='Landing Page'
-                                github='https://github.com/rafizuaf/freecodecamp-SurveyForm'
+                                github='https://github.com/rafizuaf/freecodecamp-TechDocPage'
                             />
                         </div>
                         <div className='col-span-6'>

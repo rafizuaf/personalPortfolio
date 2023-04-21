@@ -15,7 +15,7 @@ export default function Home() {
         <title>Welcome</title>
         <meta name="description" content="Built using Next" />
       </Head>
-      <main className="flex items-center text-dark w-full min-h-screen">
+      <main className="flex items-center text-dark dark:text-light w-full min-h-screen">
         <Layout className="pt-0">
           <div className="flex items-center justify-between w-full">
             <div className="w-1/3">
@@ -33,25 +33,25 @@ export default function Home() {
                   className="
                     flex 
                     items-center 
-                    bg-dark 
-                    text-light 
+                    bg-dark dark:bg-light
+                    text-light dark:text-dark
                     p-2.5 
                     px-6
                     rounded-lg
                     text-lg
                     font-semibold
-                    hover:bg-light
-                    hover:text-dark
                     border-2
                     border-solid
                     border-transparent
-                    hover:border-dark
+                    hover:bg-light hover:dark:bg-dark
+                    hover:border-dark hover:dark:border-light
+                    hover:text-dark hover:dark:text-light
                     "
                   href='/resume.pdf' 
                   target={"_blank"}
                   >
                     Resume 
-                    <DownloadIcon className='w-6 ml-1' />
+                    <DownloadIcon className='ml-1 pt-1' />
                 </Link>
               </div>
             </div>
