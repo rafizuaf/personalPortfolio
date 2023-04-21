@@ -265,7 +265,7 @@ const projects = () => {
                 <title>Projects</title>
                 <meta name="description" content="my projects" />
             </Head>
-            <main className='w-full mb-16 flex flex-col items-center justify-center'>
+            <main className='w-full mb-16 flex flex-col items-center justify-center text-dark dark:text-light'>
                 <Layout className='pt-16'>
                     <AnimatedText text='Take a look!' className='mb-16' />
                     <div className='grid grid-cols-12 gap-24 gap-y-32'>
