@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 import AnimatedText from '@/components/AnimatedText'
 import Layout from '@/components/Layout'
@@ -14,6 +15,8 @@ import Project1 from '../../public/images/projects/ProductLandingPage.jpg'
 import Project2 from '../../public/images/projects/SurveyForm.jpg'
 import Project3 from '../../public/images/projects/TechDoc.jpg'
 import Project4 from '../../public/images/projects/WebPorto.jpg'
+
+const FramerImage = motion(Image);
 
 const FeaturedProject = ({ type, title, summary, img, link, github }) => {
     return (
@@ -53,7 +56,19 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                 href={link} 
                 target='_blank'
             >
-                <Image 
+                <FramerImage 
+                    whileHover={{
+                        y: -5,
+                    }}
+                    transition={{
+                        duration: 0.2,
+                    }}
+                    priority
+                    sizes="
+                        (max-width: 768px) 100vw,
+                        (max-width: 1200px) 500vw,
+                        50vw
+                    "
                     src={img} 
                     alt={title} 
                     className='max-w-[720px] max-h-[360px] object-cover' 
@@ -179,7 +194,19 @@ const Project = ({ title, type, img, link, github }) => {
                 href={link} 
                 target='_blank'
             >
-                <Image 
+                <FramerImage
+                    whileHover={{
+                        y: -5,
+                    }}
+                    transition={{
+                        duration: 0.2,
+                    }}
+                    priority
+                    sizes="
+                        (max-width: 768px) 100vw,
+                        (max-width: 1200px) 500vw,
+                        50vw
+                    "
                     src={img} 
                     alt={title} 
                     className='max-w-[720px] max-h-[360px] object-cover' 

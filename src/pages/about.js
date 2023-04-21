@@ -111,7 +111,17 @@ const about = () => {
                                     bg-dark dark:bg-light/75
                                 "
                             />
-                            <Image src={ProfilePicture} alt="Rafi" className="w-full h-auto rounded-2xl" />
+                            <Image 
+                                src={ProfilePicture} 
+                                alt="Rafi" 
+                                className="w-full h-auto rounded-2xl" 
+                                priority
+                                sizes="
+                                    (max-width: 768px) 100vw,
+                                    (max-width: 1200px) 500vw,
+                                    33vw
+                                "
+                            />
                         </div>
 
                         <div className="col-span-2 flex flex-col items-end justify-between">
