@@ -73,10 +73,12 @@ export default function Home() {
                   className="
                     flex 
                     items-center 
+                    self-center
+                    text-center
                     bg-dark dark:bg-light
                     text-light dark:text-dark
                     p-2.5 md:p-2
-                    px-6 md:px-2
+                    px-6 md:px-3
                     rounded-lg
                     text-lg md:text-sm
                     font-semibold
@@ -97,11 +99,13 @@ export default function Home() {
                 <Link 
                   className="
                     flex 
-                    items-center 
+                    items-center
+                    self-center
+                    text-center
                     bg-primary dark:bg-secondary
                     text-light dark:text-dark
                     p-2.5 md:p-2
-                    px-4 md:px-1
+                    px-4 md:px-2
                     rounded-lg
                     text-lg md:text-sm
                     font-semibold
