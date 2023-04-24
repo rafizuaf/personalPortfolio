@@ -145,14 +145,14 @@ const about = () => {
                                 md:order-3
                             "
                         >
-                            <div className="hidden flex flex-col items-end xl:items-center justify-center">
+                            {/* <div className="flex flex-col items-end xl:items-center justify-center">
                                 <span className="inline-block text-7xl md:text-6xl sm:text-5xl xs:text-4xl font-bold">
                                     <AnimatedNumbers value={50} />+
                                 </span>
                                 <h2 className="text-xl md:text-lg sm:text-base xs:text-sm md:text-center font-medium text-dark/75 dark:text-light/75">
                                     satisfied clients
                                 </h2>
-                            </div>
+                            </div> */}
                             <div className="flex flex-col items-end xl:items-center justify-center">
                                 <span className="inline-block text-7xl md:text-6xl sm:text-5xl xs:text-4xl font-bold">
                                     <AnimatedNumbers value={5}/>+
