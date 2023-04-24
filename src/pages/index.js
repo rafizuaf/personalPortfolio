@@ -76,7 +76,7 @@ export default function Home() {
                     bg-dark dark:bg-light
                     text-light dark:text-dark
                     p-2.5 md:p-2
-                    px-6 md:px-4
+                    px-6 md:px-2
                     rounded-lg
                     text-lg md:text-base
                     font-semibold
@@ -91,7 +91,7 @@ export default function Home() {
                   target={"_blank"}
                   >
                     Resume 
-                    <DownloadIcon className='ml-1 pt-1' />
+                    <DownloadIcon className='ml-1' />
                 </Link>
 
                 <Link 
@@ -101,7 +101,7 @@ export default function Home() {
                     bg-primary dark:bg-secondary
                     text-light dark:text-dark
                     p-2.5 md:p-2
-                    px-4 md:px-3
+                    px-4 md:px-1
                     rounded-lg
                     text-lg md:text-base
                     font-semibold
@@ -117,7 +117,7 @@ export default function Home() {
                   target={"_blank"}
                   >
                     Contact&nbsp;Me
-                    <EmailIcon className='ml-1 pt-1' />
+                    <EmailIcon className='ml-1' />
                 </Link>
               </div>
             </div>

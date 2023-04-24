@@ -260,6 +260,7 @@ const Navbar = () => {
                 <button 
                     onClick={ () => setMode(mode === 'light' ? 'dark' : 'light') }
                     className={`
+                        w-6 
                         mx-3 sm:mx-1
                         flex 
                         items-center 
