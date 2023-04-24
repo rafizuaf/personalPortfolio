@@ -78,7 +78,7 @@ export default function Home() {
                     p-2.5 md:p-2
                     px-6 md:px-2
                     rounded-lg
-                    text-lg md:text-base
+                    text-lg md:text-sm
                     font-semibold
                     border-2
                     border-solid
@@ -91,7 +91,7 @@ export default function Home() {
                   target={"_blank"}
                   >
                     Resume 
-                    <DownloadIcon className='ml-1' />
+                    <DownloadIcon className='ml-1 mt-1' />
                 </Link>
 
                 <Link 
@@ -103,7 +103,7 @@ export default function Home() {
                     p-2.5 md:p-2
                     px-4 md:px-1
                     rounded-lg
-                    text-lg md:text-base
+                    text-lg md:text-sm
                     font-semibold
                     border-2
                     border-solid
@@ -117,7 +117,7 @@ export default function Home() {
                   target={"_blank"}
                   >
                     Contact&nbsp;Me
-                    <EmailIcon className='ml-1' />
+                    <EmailIcon className='ml-1 mt-1' />
                 </Link>
               </div>
             </div>
