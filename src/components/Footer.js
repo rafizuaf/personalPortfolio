@@ -11,14 +11,14 @@ const Footer = () => {
                 border-solid 
                 border-dark dark:border-light
                 font-md 
-                text-lg
+                text-lg sm:text-base
             '
         >
-            <Layout className='py-8 flex items-center justify-between text-dark dark:text-light'>
+            <Layout className='py-8 lg:py-6 flex lg:flex-col items-center justify-between text-dark dark:text-light md:text-center'>
                 <span>{new Date().getFullYear()} &copy; All Rights Reserved.</span>
-                <div className='flex items-center'>
+                <span className='flex items-center lg:py-2 md:text-center'>
                     Made under exhaustion and compulsion <span className='text-primary dark:text-secondary text-2xl px-1'>&#9825;</span>
-                </div>
+                </span>
             </Layout>
         </footer>
     )

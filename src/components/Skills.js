@@ -9,11 +9,12 @@ const Skill = ({ name, x, y }) => {
                         items-center 
                         justify-center 
                         rounded-full 
-                        font-semibold 
-                        bg-dark dark:bg-light
-                        text-light dark:text-dark
-                        py-3
-                        px-6 
+                        font-semibold xs:font-bold
+                        md:text-sm 
+                        bg-dark dark:bg-light sm:bg-transparent sm:dark:bg-transparent
+                        text-light dark:text-dark sm:text-dark sm:dark:text-light
+                        py-3 lg:py-2 md:py-1.5
+                        px-6 lg:px-4 md:px-3
                         shadow-dark dark:shadow-light
                         cursor-pointer
                         absolute
@@ -43,8 +44,8 @@ const Skills = () => {
             <h2 
                 className='
                     font-bold 
-                    text-8xl 
-                    mt-64 
+                    text-8xl md:text-6xl
+                    mt-64 md:mt-32
                     w-full 
                     text-center
                 '
@@ -55,13 +56,14 @@ const Skills = () => {
             <div 
                 className='
                     w-full 
-                    h-screen 
+                    h-screen lg:h-[80vh] sm:h-[60vh] xs:h-[50vh]
                     relative 
                     flex 
                     items-center 
                     justify-center 
                     rounded-full 
-                    bg-circularLight dark:bg-circularDark
+                    bg-circularLight lg:bg-circularLightLg md:bg-circularLightMd sm:bg-circularLightSm 
+                    dark:bg-circularDark lg:dark:bg-circularDarkLg md:dark:bg-circularDarkMd sm:dark:bg-circularDarkSm
                 '
             >
 
@@ -71,10 +73,11 @@ const Skills = () => {
                         items-center 
                         justify-center 
                         rounded-full 
-                        font-semibold 
+                        font-semibold
+                        xs:text-xs
                         bg-dark dark:bg-light
                         text-light dark:text-dark
-                        p-5 
+                        p-5 lg:p-4 md:p-2 xs:p-1
                         shadow-dark dark:shadow-light
                         cursor-pointer
                     '
@@ -85,7 +88,7 @@ const Skills = () => {
                     Web
                 </motion.div>
 
-                <Skill name='CSS' x='5vw' y='0vw'/>
+                <Skill name='CSS' x='-5vw' y='-9vw'/>
                 <Skill name='HTML' x='-8vw' y='4vw'/>
                 <Skill name='JavaScript' x='14vw' y='4vw'/>
                 <Skill name='React.js' x='0vw' y='12vw'/>

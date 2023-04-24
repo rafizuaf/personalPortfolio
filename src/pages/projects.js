@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 
 import AnimatedText from '@/components/AnimatedText'
 import Layout from '@/components/Layout'
+import TransitionEffect from '@/components/TransitionEffect';
 import { GithubIcon } from '@/components/Icons';
 
 import Featured1 from '../../public/images/projects/NetflixClone.jpg'
@@ -23,18 +24,18 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
         <article 
             className='
                 w-full 
-                flex 
+                flex lg:flex-col
                 items-center 
                 justify-between 
-                rounded-3xl 
+                rounded-3xl xs:rounded-2xl
                 border 
                 border-solid 
                 border-dark dark:border-light
                 bg-light dark:bg-dark
                 shadow-2xl
-                p-12
+                p-12 lg:p-8 xs:p-4
                 relative
-                rounded-br-2xl
+                rounded-br-2xl xs:rounded-br-3xl
             '
         >
 
@@ -42,17 +43,22 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                 className="
                     absolute 
                     top-0 
-                    -right-4 
+                    -right-4 xs:-right-2
                     -z-10 
-                    w-[101%] 
-                    h-[103%] 
-                    rounded-[2.5rem] 
+                    w-[101%] xs:w-full
+                    h-[103%] sm:h-[102%]
+                    rounded-[2.5rem] xs:rounded-[1.5rem]
                     bg-dark dark:bg-light
                     rounded-br-3xl
                 "
             />
             <Link
-                className='w-1/2 cursor-pointer overflow-hidden rounded-lg'
+                className='
+                    w-1/2 lg:w-full 
+                    cursor-pointer 
+                    overflow-hidden 
+                    rounded-lg
+                '
                 href={link} 
                 target='_blank'
             >
@@ -71,25 +77,30 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                     "
                     src={img} 
                     alt={title} 
-                    className='max-w-[720px] max-h-[360px] object-cover' 
+                    className='
+                        w-full 
+                        h-auto
+                        bg-cover
+                        ' 
                 />
             </Link>
 
             <div 
                 className='
-                    w-1/2
+                    w-1/2 lg:w-full
                     flex
                     flex-col
                     items-start
                     justify-between
-                    pl-6
+                    pl-6 lg:pl-0
+                    lg:pt-6
                 '
             >
                 <span 
                     className='
                         text-primary dark:text-secondary
                         font-medium
-                        text-xl
+                        text-xl xs:text-base
                     '
                 >
                     {type}
@@ -104,7 +115,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                             my-2
                             w-full
                             text-left
-                            text-4xl
+                            text-4xl sm:text-sm
                             font-bold
                             text-dark dark:text-light
                         '
@@ -117,6 +128,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                         my-2 
                         font-medium 
                         text-dark dark:text-light
+                        sm:text-sm
                     '
                 >
                     {summary}
@@ -144,8 +156,8 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
                             bg-dark dark:bg-light
                             text-light dark:text-dark
                             p-2
-                            px-6
-                            text-lg
+                            px-6 sm:px-4
+                            text-lg sm:text-base
                             font-semibold
                         '
                     >
@@ -171,7 +183,7 @@ const Project = ({ title, type, img, link, github }) => {
                 border-solid 
                 border-dark dark:border-light
                 bg-light dark:bg-dark
-                p-6 
+                p-6 xs:p-4
                 relative
                 rounded-br-xl
             '
@@ -180,11 +192,11 @@ const Project = ({ title, type, img, link, github }) => {
                 className="
                     absolute 
                     top-0 
-                    -right-3 
+                    -right-3 md:-right-2
                     -z-10 
-                    w-[101%] 
-                    h-[103%] 
-                    rounded-[2rem] 
+                    w-[101%] md:w-[101%]
+                    h-[103%] xs:h-[102%]
+                    rounded-[2rem] xs:rounded[1.5rem]
                     bg-dark dark:bg-light
                     rounded-br-3xl
                 "
@@ -209,7 +221,11 @@ const Project = ({ title, type, img, link, github }) => {
                     "
                     src={img} 
                     alt={title} 
-                    className='max-w-[720px] max-h-[360px] object-cover' 
+                    className='
+                        w-full
+                        h-auto
+                        bg-cover
+                    ' 
                 />
             </Link>
 
@@ -227,7 +243,7 @@ const Project = ({ title, type, img, link, github }) => {
                     className='
                         text-primary dark:text-secondary
                         font-medium
-                        text-xl
+                        text-xl lg:text-lg md:text-base
                     '
                 >
                     {type}
@@ -242,7 +258,7 @@ const Project = ({ title, type, img, link, github }) => {
                             my-2
                             w-full
                             text-left
-                            text-3xl
+                            text-3xl lg:text-2xl
                             font-bold
                             text-dark dark:text-light
                         '
@@ -263,7 +279,7 @@ const Project = ({ title, type, img, link, github }) => {
                         href={link} 
                         target='_blank'
                         className='
-                            text-lg
+                            text-lg md:text-base
                             font-semibold
                             underline
                             text-dark dark:text-light
@@ -274,7 +290,7 @@ const Project = ({ title, type, img, link, github }) => {
                     <Link 
                         href={github} 
                         target='_blank'
-                        className='w-8 text-dark dark:text-light'
+                        className='w-8 md:w-6 text-dark dark:text-light'
                     >
                         <GithubIcon />
                     </Link>
@@ -292,10 +308,19 @@ const projects = () => {
                 <title>Projects</title>
                 <meta name="description" content="my projects" />
             </Head>
+            <TransitionEffect />
             <main className='w-full mb-16 flex flex-col items-center justify-center text-dark dark:text-light'>
                 <Layout className='pt-16'>
-                    <AnimatedText text='Take a look!' className='mb-16' />
-                    <div className='grid grid-cols-12 gap-24 gap-y-32'>
+                    <AnimatedText text='Take a look!' className='mb-16 lg:!text-7xl sm:!text-6xl xs:!text-4xl sm:mb-8' />
+                    <div 
+                        className='
+                            grid 
+                            grid-cols-12 
+                            gap-24 
+                            gap-y-32 md:gap-y-24
+                            xl:gap-x-16 lg:gap-x-8 sm:gap-x-0
+                        '
+                    >
                         <div className='col-span-12'>
                             <FeaturedProject 
                                 title='Netflix Clone' 
@@ -306,7 +331,7 @@ const projects = () => {
                                 github='https://github.com/rafizuaf/netflix-clone'
                             />
                         </div>
-                        <div className='col-span-6'>
+                        <div className='col-span-6 sm:col-span-12'>
                             <Project 
                                 title='Product Landing Page' 
                                 img={Project1}
@@ -315,7 +340,7 @@ const projects = () => {
                                 github='https://github.com/rafizuaf/freecodecamp-ProductLandingPage'
                             />
                         </div>
-                        <div className='col-span-6'>
+                        <div className='col-span-6 sm:col-span-12'>
                             <Project 
                                 title='Survey Form' 
                                 img={Project2}
@@ -335,7 +360,7 @@ const projects = () => {
                                 github='https://github.com/harisenincom-batch4-team1/'
                             />
                         </div>
-                        <div className='col-span-6'>
+                        <div className='col-span-6 sm:col-span-12'>
                             <Project 
                                 title='JavaScript Technical Documentation Page' 
                                 img={Project3}
@@ -344,7 +369,7 @@ const projects = () => {
                                 github='https://github.com/rafizuaf/freecodecamp-TechDocPage'
                             />
                         </div>
-                        <div className='col-span-6'>
+                        <div className='col-span-6 sm:col-span-12'>
                             <Project 
                                 title='Simple Portfolio Website' 
                                 img={Project4}

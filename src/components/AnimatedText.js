@@ -3,16 +3,16 @@ import { motion } from 'framer-motion';
 
 const quote = {
     initial: {
-        opacity:1,
+        opacity: 1,
     },
-    animate:{
-        opacity:1,
+    animate: {
+        opacity: 1,
         transition: {
-            delay:0.5,
-            staggerChildren: 0.08,
+            delay: 0.5,
+            staggerChildren: 0.05,
         }
     }
-};
+}
 
 const singleWord = {
     initial: {
@@ -23,7 +23,7 @@ const singleWord = {
         opacity:1,
         y: 0,
         transition: {
-            duration: 1,
+            duration: 1.2,
         }
     }
 };
@@ -34,7 +34,7 @@ const AnimatedText = ({text, className=""}) => {
             className='
                 w-full 
                 mx-auto 
-                py-2 
+                py-2 sm:py-0
                 flex 
                 items-center 
                 justify-center 
@@ -43,29 +43,22 @@ const AnimatedText = ({text, className=""}) => {
             '
         >
             <motion.h1 
-                className={`
-                    inline-block 
-                    w-full 
-                    text-dark dark:text-light
-                    font-bold 
-                    capitalize 
-                    text-8xl 
-                    ${className}
-                `}
-                variants={quote}
-                initial='initial'
+                className={`inline-block w-full text-dark dark:text-light font-bold capitalize text-8xl ${className}`}
+                variants={quote} 
+                initial='initial' 
                 animate='animate'
             >
-                { text.split('').map((word, index) =>
-                    <motion.span 
-                        key={word+'-'+index} 
-                        className='inline-block'
-                        variants={singleWord}
-                    >
-                        { word }&nbsp;
-                    </motion.span>
-                ) 
-            }
+                {
+                    text.split(" ").map((word, index) =>
+                        <motion.span 
+                            key={word+'-'+index} 
+                            className='inline-block' 
+                            variants={singleWord}
+                        >
+                            {word}&nbsp;
+                        </motion.span>
+                    )
+                }
             </motion.h1>
         </div>
     )
