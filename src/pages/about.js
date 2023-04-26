@@ -79,7 +79,7 @@ const about = () => {
                             </p>
                             <p className="font-medium my-4 md:text-center">
                                 Experienced as a Full Stack Web Developer who works
-                                with JavaScript, React.js, Next.js, Node.js, Express.js, MongoDB
+                                with JavaScript, Typescript, React.js, Next.js, Node.js, Express.js, MongoDB
                                 and MySQL.
                             </p>
                             <p className="font-medium md:text-center">

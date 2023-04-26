@@ -325,7 +325,7 @@ const projects = () => {
                             <FeaturedProject 
                                 title='Netflix Clone' 
                                 img={Featured1}
-                                summary='A Netflix-like web app using React.JS, Next.JS, Prisma, MongoDB, NextAuth, and Tailwind CSS.'
+                                summary='A Netflix-like web app using React.js, Next.js, Prisma, MongoDB, NextAuth, and Tailwind CSS.'
                                 link='https://konzflix.vercel.app/'
                                 type='Featured Project'
                                 github='https://github.com/rafizuaf/netflix-clone'
@@ -354,7 +354,7 @@ const projects = () => {
                             <FeaturedProject 
                                 title='Job Portal' 
                                 img={Featured2}
-                                summary='A job portal clone. Built using React.JS, Express.JS, Node.JS, MySQL, and Tailwind CSS.'
+                                summary='A job portal clone. Built using React.js, Express.js, Node.js, MySQL, and Tailwind CSS.'
                                 link='https://kalibrr.vercel.app/'
                                 type='Featured Project'
                                 github='https://github.com/harisenincom-batch4-team1/'
