@@ -95,7 +95,7 @@ const Skills = () => {
                 <Skill name='Next.js' x='-20vw' y='-15vw'/>
                 <Skill name='Express.js' x='17vw' y='-12vw'/>
                 <Skill name='Tailwind CSS' x='30vw' y='-5vw'/>
-                <Skill name='Next.js' x='0vw' y='-20vw'/>
+                <Skill name='Node.js' x='0vw' y='-20vw'/>
                 <Skill name='MongoDB' x='-30vw' y='18vw'/>
                 <Skill name='MySQL' x='-37vw' y='2vw'/>
 

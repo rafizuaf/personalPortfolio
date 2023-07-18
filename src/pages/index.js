@@ -15,6 +15,7 @@ export default function Home() {
       <Head>
         <title>Welcome</title>
         <meta name="description" content="Built using Next" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <TransitionEffect />
       <main 
