@@ -11,7 +11,7 @@ import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import TransitionEffect from "@/components/TransitionEffect";
 
-import ProfilePicture from "../../public/images/FF_2017.jpg";
+import ProfilePicture from "../../public/images/FF2017.JPG";
 
 const AnimatedNumbers = ({ value }) => {
     const ref = useRef(null);
