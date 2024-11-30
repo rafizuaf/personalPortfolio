@@ -21,19 +21,19 @@ const AnimatedNumbers = ({ value }) => {
     const isInView = useInView(ref);
 
     useEffect(() => {
-        if(isInView) {
+        if (isInView) {
             motionValue.set(value);
         }
     }, [isInView, value, motionValue]);
 
     useEffect(() => {
-        springValue.on('change', (latest) =>{
-            if(ref.current && latest.toFixed(0) <= value) {
+        springValue.on('change', (latest) => {
+            if (ref.current && latest.toFixed(0) <= value) {
                 ref.current.textContent = latest.toFixed(0);
             }
         })
     }, [springValue, value]);
-    
+
 
 
     return <span ref={ref}></span>
@@ -47,7 +47,7 @@ const about = () => {
                 <meta name="description" content="about me" />
             </Head>
             <TransitionEffect />
-            <main 
+            <main
                 className="
                     flex 
                     w-full 
@@ -72,10 +72,7 @@ const about = () => {
                                 Say no more!
                             </h2>
                             <p className="font-medium md:text-center">
-                                Hi! I'm <span className="font-bold text-primary dark:text-secondary">Rafi,</span> a bachelor degree of Mechanical Engineering from
-                                Mercu Buana University. Graduated Full-Stack Web Developer
-                                bootcamp program from harisenin.com for deepening skills in Web
-                                Development.
+                                Hi! I'm <span className="font-bold text-primary dark:text-secondary">Rafi,</span> Dedicated and versatile Software Engineer with a robust foundation in full-stack development, specializing in JavaScript, TypeScript, Node.js, React.js and modern web technologies. I pivoted from a technical background in aviation to software engineering, completing an intensive bootcamp to formalize my expertise. With a passion for crafting user-centered applications, I have successfully contributed to payment system and assets management system enhancements and workflow efficiencies. I’m now seeking opportunities to leverage my skills in global, tech-driven teams focused on impactful solutions.
                             </p>
                             <p className="font-medium my-4 md:text-center">
                                 Experienced as a Full Stack Web Developer who works
@@ -123,10 +120,10 @@ const about = () => {
                                     bg-dark dark:bg-light/75
                                 "
                             />
-                            <Image 
-                                src={ProfilePicture} 
-                                alt="Rafi" 
-                                className="w-full h-auto rounded-2xl" 
+                            <Image
+                                src={ProfilePicture}
+                                alt="Rafi"
+                                className="w-full h-auto rounded-2xl"
                                 priority
                                 sizes="
                                     (max-width: 768px) 100vw,
@@ -136,7 +133,7 @@ const about = () => {
                             />
                         </div>
 
-                        <div 
+                        <div
                             className="
                                 col-span-2 xl:col-span-8 
                                 flex flex-col xl:flex-row 
@@ -155,7 +152,7 @@ const about = () => {
                             </div> */}
                             <div className="flex flex-col items-end xl:items-center justify-center">
                                 <span className="inline-block text-7xl md:text-6xl sm:text-5xl xs:text-4xl font-bold">
-                                    <AnimatedNumbers value={5}/>+
+                                    <AnimatedNumbers value={5} />+
                                 </span>
                                 <h2 className="text-xl md:text-lg sm:text-base xs:text-sm md:text-center font-medium text-dark/75 dark:text-light/75">
                                     projects completed
@@ -163,7 +160,7 @@ const about = () => {
                             </div>
                             <div className="flex flex-col items-end xl:items-center justify-center">
                                 <span className="inline-block text-7xl md:text-6xl sm:text-5xl xs:text-4xl font-bold">
-                                    <AnimatedNumbers value={1}/>+
+                                    <AnimatedNumbers value={1} />+
                                 </span>
                                 <h2 className="text-xl md:text-lg sm:text-base xs:text-sm md:text-center font-medium text-dark/75 dark:text-light/75">
                                     years of experience
@@ -176,7 +173,7 @@ const about = () => {
                     <Skills />
                     <Experience />
                     <Education />
-                    
+
 
                 </Layout>
             </main>
