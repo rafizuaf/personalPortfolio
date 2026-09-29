@@ -48,23 +48,38 @@ export const nav: MotionModule = ({ root, lenis }) => {
   };
 };
 
-/** Mask reveal for section titles. The hero title has its own timeline. */
+/** On the yellow contact slab a yellow flash would vanish, so letters only fade up there. */
 export const reveals: MotionModule = ({ root, motion }) => {
   if (!motion) return;
 
+  const accent = getComputedStyle(document.documentElement).getPropertyValue("--color-accent").trim();
+  const splits: SplitText[] = [];
+
   root.querySelectorAll<HTMLElement>("h2[data-reveal]").forEach((title) => {
-    SplitText.create(title, {
-      type: "lines",
-      mask: "lines",
-      autoSplit: true,
-      onSplit: (self) =>
-        gsap.from(self.lines, {
-          yPercent: 105,
-          duration: 0.9,
-          ease: EASE.out,
-          stagger: 0.07,
-          scrollTrigger: { trigger: title, start: "top 85%", once: true },
-        }),
+    const split = SplitText.create(title, { type: "words,chars" });
+    splits.push(split);
+    const chars = split.chars as HTMLElement[];
+    const settled = getComputedStyle(title).color;
+    const flash = title.closest(".slab") ? null : accent;
+    const stagger = Math.min(0.045, 0.9 / chars.length);
+
+    gsap.set(chars, { opacity: 0.12 });
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: title, start: "top 85%", once: true },
+    });
+    tl.to(chars, { opacity: 1, duration: 0.08, ease: "none", stagger }, 0);
+    if (flash) {
+      tl.fromTo(
+        chars,
+        { color: flash },
+        { color: settled, duration: 0.5, ease: EASE.out, stagger, immediateRender: false },
+        0.06,
+      );
+    }
+    tl.eventCallback("onComplete", () => {
+      gsap.set(chars, { clearProps: "color,opacity" });
     });
   });
+
+  return () => splits.forEach((split) => split.revert());
 };

@@ -1,6 +1,5 @@
 import { gsap, type MotionModule } from "./register";
 
-/** The stack marquee drifts on its own, speeds up with scroll velocity and follows scroll direction. */
 export const marquee: MotionModule = ({ root, lenis }) => {
   const track = root.querySelector<HTMLElement>("[data-marquee-track]");
   if (!track || !lenis) return;

@@ -1,8 +1,5 @@
-/* Hallmark · tokens · theme: custom "taxi line" (vibe: asphalt, signage, taxiway yellow)
- * paper-band: dark · display-style: display-condensed · accent-hue: warm (yellow, 90°)
- * Tailwind v4 reads the @theme block as utilities (bg-paper, text-ink, font-display, text-hero).
- * Everything else lives on :root and is referenced as var(--token).
- */
+/* Tailwind v4 turns the @theme block into utilities (bg-paper, text-hero).
+ * Everything on :root is referenced as var(--token). */
 
 @theme {
   --color-*: initial;

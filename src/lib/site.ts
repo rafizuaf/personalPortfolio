@@ -1,8 +1,4 @@
-/**
- * Canonical origin for metadata, sitemap and structured data.
- * NEXT_PUBLIC_SITE_URL wins (set it when using a custom domain); on Vercel the
- * production domain is used otherwise; localhost for local builds.
- */
+/** Set NEXT_PUBLIC_SITE_URL when the site is served from a custom domain. */
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_PROJECT_PRODUCTION_URL

@@ -1,28 +1,32 @@
 import Lenis from "lenis";
-import { centerline } from "./centerline";
-import { checklist } from "./checklist";
+import { board } from "./board";
+import { gateBoard } from "./gateBoard";
 import { anchors, nav, reveals } from "./chrome";
 import { hero } from "./hero";
 import { logbook } from "./logbook";
 import { marquee } from "./marquee";
 import { gsap, registerGsap, ScrollTrigger, type MotionModule } from "./register";
+import { route } from "./route";
 import { statement } from "./statement";
-import { systemMap } from "./systemMap";
 import { work } from "./work";
+import { systemMap } from "./systemMap";
+import { checklist } from "./checklist";
 
 // Order matters: pins are created top to bottom so ScrollTrigger measures them in page order.
 const MODULES: MotionModule[] = [
   anchors,
   nav,
-  centerline,
   hero,
+  board,
   statement,
   logbook,
   systemMap,
   work,
   marquee,
+  gateBoard,
   checklist,
   reveals,
+  route,
 ];
 
 const QUERIES = {

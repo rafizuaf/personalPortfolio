@@ -1,6 +1,5 @@
 import { EASE, gsap, type MotionModule } from "./register";
 
-/** Nodes land one after another and the paint between them is laid down in order. */
 export const systemMap: MotionModule = ({ root, motion }) => {
   const map = root.querySelector<HTMLElement>("[data-system-map]");
   if (!map || !motion) return;

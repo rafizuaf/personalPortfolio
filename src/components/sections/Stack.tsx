@@ -1,4 +1,7 @@
 import { MARQUEE, STACK, STACK_TITLE } from "@/content/stack";
+import { PROFILE } from "@/content/profile";
+
+const LAYER_CELLS = Math.max(...STACK.map((row) => row.layer.length));
 
 function MarqueeRun() {
   return (
@@ -14,6 +17,21 @@ function MarqueeRun() {
     </div>
   );
 }
+
+/** Split-flap cells; the text is for sighted users only, the caller provides the accessible text. */
+function Tiles({ text, cells, accent }: { text: string; cells: number; accent?: boolean }) {
+  return (
+    <span aria-hidden="true" data-flap-row className={`board board--gate ${accent ? "board--accent" : ""}`}>
+      {[...text.toUpperCase().padEnd(cells)].map((char, i) => (
+        <span key={i} data-cell className="board__cell">
+          {char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+const colHead = "text-xs font-semibold tracking-[0.12em] text-muted uppercase";
 
 export default function Stack() {
   return (
@@ -34,22 +52,40 @@ export default function Stack() {
         <h2 id="stack-title" data-reveal className="display text-section lg:col-span-5">
           {STACK_TITLE}
         </h2>
-        <table className="w-full border-t-2 border-ink lg:col-span-7">
-          <caption className="sr-only">Tools I use, grouped by layer</caption>
-          <tbody>
-            {STACK.map((row) => (
-              <tr key={row.layer} className="border-b border-rule">
-                <th
-                  scope="row"
-                  className="w-28 py-(--space-4) pr-(--space-5) text-left align-top font-semibold sm:w-40"
-                >
-                  {row.layer}
-                </th>
-                <td className="py-(--space-4) text-muted">{row.tools.join(", ")}</td>
-              </tr>
+
+        <div data-gate-board className="border border-rule bg-paper-2 lg:col-span-7">
+          <div className="flex items-center justify-between gap-(--space-4) border-b border-rule px-(--space-5) py-(--space-3)">
+            <p className={colHead}>Departures</p>
+            <p className="num text-sm font-medium text-muted">
+              <span data-clock>{PROFILE.location}</span>
+            </p>
+          </div>
+
+          <div
+            aria-hidden="true"
+            className={`hidden grid-cols-[4rem_11rem_1fr] gap-(--space-4) px-(--space-5) pt-(--space-4) pb-(--space-2) sm:grid ${colHead}`}
+          >
+            <span>Gate</span>
+            <span>Layer</span>
+            <span>Tools</span>
+          </div>
+
+          <ul aria-label="Tools I use, grouped by layer">
+            {STACK.map((row, i) => (
+              <li
+                key={row.layer}
+                className="grid grid-cols-[4rem_1fr] gap-x-(--space-4) gap-y-(--space-2) border-t border-rule px-(--space-5) py-(--space-4) first:border-t-0 sm:grid-cols-[4rem_11rem_1fr] sm:items-center"
+              >
+                <Tiles text={`A${i + 1}`} cells={2} accent />
+                <span>
+                  <span className="sr-only">{row.layer}: </span>
+                  <Tiles text={row.layer} cells={LAYER_CELLS} />
+                </span>
+                <span className="col-span-2 text-[0.9375rem] sm:col-span-1">{row.tools.join(", ")}</span>
+              </li>
             ))}
-          </tbody>
-        </table>
+          </ul>
+        </div>
       </div>
     </section>
   );

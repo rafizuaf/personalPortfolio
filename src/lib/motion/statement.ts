@@ -1,6 +1,6 @@
 import { gsap, SplitText, type MotionModule } from "./register";
 
-/** Words brighten in reading order while the section is pinned. Starts at 0.5 opacity so the unread text still passes 3:1. */
+/** Starts at 0.5 opacity so unread words still pass 3:1 contrast. */
 export const statement: MotionModule = ({ root, motion, desktop }) => {
   const section = root.querySelector<HTMLElement>("[data-statement]");
   const text = root.querySelector<HTMLElement>("[data-statement-text]");

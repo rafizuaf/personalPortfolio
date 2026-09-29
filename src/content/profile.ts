@@ -8,6 +8,9 @@ export const PROFILE = {
   shortMark: "MRF",
   role: "Software engineer in Jakarta.",
   roleAccent: "Frontend first.",
+  /** Hero departure board: flips through past trades and lands on the last one, followed by `boardTail`. */
+  board: ["Aircraft technician", "Planning engineer", "Software engineer"],
+  boardTail: "in Jakarta.",
   lede: "I build the front end of internal business systems, like payment approval and asset management for Samudera Indonesia. Before software, I spent almost seven years in aircraft maintenance.",
   email: "mukhtar.r.f@gmail.com",
   resume: {

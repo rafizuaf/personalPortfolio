@@ -1,6 +1,5 @@
 import { EASE, gsap, type MotionModule } from "./register";
 
-/** Quiet pass near the end of the page: each row lands, then its box is ticked, one item at a time. */
 export const checklist: MotionModule = ({ root, motion }) => {
   if (!motion) return;
 

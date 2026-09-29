@@ -1,4 +1,5 @@
 import { EASE, gsap, type MotionModule } from "./register";
+import { createWarp } from "./warp";
 
 /**
  * Mouse users get one floating screenshot that follows the cursor over project rows.
@@ -15,9 +16,15 @@ export const work: MotionModule = ({ root, motion, desktop, finePointer }) => {
 
   const images = new Map(
     gsap.utils
-      .toArray<HTMLElement>("[data-preview-img]", preview)
+      .toArray<HTMLImageElement>("[data-preview-img]", preview)
       .map((img) => [img.dataset.previewImg ?? "", img]),
   );
+
+  const canvas = document.createElement("canvas");
+  canvas.className = "absolute inset-0 size-full opacity-0";
+  preview.append(canvas);
+  const warp = createWarp(canvas, images);
+  if (!warp) canvas.remove();
 
   gsap.set(preview, { yPercent: -50, x: innerWidth / 2, y: innerHeight / 2 });
   const xTo = gsap.quickTo(preview, "x", { duration: 0.55, ease: EASE.out });
@@ -35,6 +42,7 @@ export const work: MotionModule = ({ root, motion, desktop, finePointer }) => {
   const show = (id: string) => {
     if (id === active) return;
     active = id;
+    warp?.show(id);
     images.forEach((img, key) => {
       gsap.to(img, { autoAlpha: key === id ? 1 : 0, duration: 0.25, ease: EASE.out, overwrite: true });
     });
@@ -43,6 +51,7 @@ export const work: MotionModule = ({ root, motion, desktop, finePointer }) => {
 
   const hide = () => {
     active = null;
+    warp?.hide();
     gsap.to(preview, { autoAlpha: 0, scale: 0.92, duration: 0.25, ease: EASE.in, overwrite: "auto" });
   };
 
@@ -51,6 +60,7 @@ export const work: MotionModule = ({ root, motion, desktop, finePointer }) => {
 
   const onMove = (event: PointerEvent) => {
     place(event.clientX, event.clientY);
+    warp?.push(event.movementX, event.movementY);
     const id = rowId(event.target);
     if (id) show(id);
   };
@@ -61,6 +71,8 @@ export const work: MotionModule = ({ root, motion, desktop, finePointer }) => {
   return () => {
     list.removeEventListener("pointermove", onMove);
     list.removeEventListener("pointerleave", hide);
+    warp?.destroy();
+    canvas.remove();
     html.classList.remove("has-preview");
   };
 };

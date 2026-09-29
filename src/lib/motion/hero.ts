@@ -14,7 +14,7 @@ export const hero: MotionModule = ({ root, motion, desktop, finePointer }) => {
   // The entrance is CSS (globals.css) so the name paints before this chunk loads.
 
   if (finePointer) {
-    // Letters stretch upward toward the pointer, like signage catching headlights. Transform only, no reflow.
+    // scaleY rather than font weight: weight changes glyph widths and reflows the headline on every move.
     const split = SplitText.create(lines, { type: "chars", tag: "span", aria: "none" });
     const chars = split.chars as HTMLElement[];
     gsap.set(chars, { transformOrigin: "50% 100%" });
@@ -43,7 +43,7 @@ export const hero: MotionModule = ({ root, motion, desktop, finePointer }) => {
   }
 
   if (desktop) {
-    // The hero holds still while the statement slides over it; the name recedes as it goes.
+    // pinSpacing off: the statement section slides over the held hero.
     gsap.to(name, {
       scale: 0.84,
       autoAlpha: 0.3,

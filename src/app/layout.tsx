@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
         <div className="centerline" aria-hidden="true">
-          <span className="centerline__paint" data-centerline />
+          <span className="centerline__paint" />
         </div>
         <MotionRoot>{children}</MotionRoot>
       </body>

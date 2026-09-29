@@ -1,43 +1,94 @@
+import type { CSSProperties } from "react";
 import { CHAPTERS, EXPERIENCE_TITLE, toYear, type Employer } from "@/content/experience";
 
-/** Oldest on the left, newest on the right. Only shown while the logbook runs sideways. */
-function YearScale({ now }: { now: number }) {
-  const start = Math.floor(Math.min(...CHAPTERS.map((chapter) => toYear(chapter.from))));
+/** Top-down airliner, nose pointing right, in a 32-unit grid. */
+const PLANE =
+  "M30 16c0-1-1-1.6-2.4-1.6H19L12.5 3H10l3.2 11.4H7.5L4.8 10H3l1.4 6L3 22h1.8l2.7-4.4h5.7L10 29h2.5L19 17.6h8.6C29 17.6 30 17 30 16z";
+
+function ThresholdKeys({ side }: { side: "left" | "right" }) {
+  return (
+    <span
+      className={`absolute inset-y-1 flex flex-col justify-between ${side === "left" ? "left-1" : "right-1"}`}
+    >
+      {Array.from({ length: 4 }, (_, i) => (
+        <span key={i} className="block h-0.5 w-3 bg-ink/60" />
+      ))}
+    </span>
+  );
+}
+
+/** Only shown while the logbook runs sideways, where chapters are laid out oldest first to match it. */
+function Runway({ now }: { now: number }) {
+  const first = Math.min(...CHAPTERS.map((chapter) => toYear(chapter.from)));
+  const start = Math.floor(first);
   const end = Math.floor(now) + 1;
   const at = (year: number) => `${((year - start) / (end - start)) * 100}%`;
   const years = Array.from({ length: end - start }, (_, i) => start + i);
+  const lights = Array.from({ length: (end - start) * 2 + 1 }, (_, i) => start + i / 2);
 
   return (
-    <div
-      aria-hidden="true"
-      className="absolute inset-x-0 bottom-(--space-6) hidden logh:block"
-    >
+    <div aria-hidden="true" className="absolute inset-x-0 bottom-(--space-6) hidden logh:block">
       <div className="shell">
-        <div data-logbook-scale data-start={start} data-end={end} className="relative h-12">
+        <div
+          data-logbook-scale
+          data-start={start}
+          data-end={end}
+          data-first={first}
+          data-now={now}
+          className="relative h-16"
+        >
           {CHAPTERS.map((chapter) => {
             const from = toYear(chapter.from);
             const to = chapter.to ? toYear(chapter.to) : now;
             return (
               <div
                 key={chapter.id}
-                className="absolute top-0 h-1 bg-dim"
+                className="absolute top-0 border-b-2 border-dim pb-1"
                 style={{ left: at(from), width: `calc(${at(to)} - ${at(from)})` }}
-              />
+              >
+                <span className="block text-[0.6875rem] leading-none font-semibold tracking-[0.12em] text-muted uppercase">
+                  {chapter.trade}
+                </span>
+              </div>
             );
           })}
-          <div className="absolute inset-x-0 top-4 border-t border-rule" />
+
+          <div className="absolute inset-x-0 top-[22px] h-6 rounded-(--radius) bg-paper-3">
+            <span className="absolute inset-x-6 top-1/2 h-px -translate-y-1/2 bg-[repeating-linear-gradient(to_right,var(--color-ink)_0_10px,transparent_10px_18px)] opacity-50" />
+            <ThresholdKeys side="left" />
+            <ThresholdKeys side="right" />
+            {lights.map((year, i) => (
+              <span
+                key={year}
+                data-light={year}
+                className="runway-light"
+                style={{ left: at(year), "--i": i } as CSSProperties}
+              />
+            ))}
+          </div>
+
           {years.map((year) => (
-            <span key={year} className="absolute top-4" style={{ left: at(year) }}>
-              <span className="block h-2 border-l border-rule" />
-              <span className="num mt-1 block -translate-x-1/2 text-xs leading-none text-muted">
-                {year}
-              </span>
+            <span
+              key={year}
+              className="num absolute top-[52px] -translate-x-1/2 text-xs leading-none text-muted"
+              style={{ left: at(year) }}
+            >
+              {year}
             </span>
           ))}
-          <span
-            data-logbook-marker
-            className="absolute -top-1 left-0 h-6 w-(--centerline-w) -translate-x-1/2 bg-accent"
-          />
+
+          <span data-logbook-marker className="absolute top-[22px] left-0 h-6 w-0">
+            <span data-plane-shadow className="absolute -top-0.5 -left-3.5 size-7 opacity-70">
+              <svg viewBox="0 0 32 32" className="size-full fill-paper">
+                <path d={PLANE} />
+              </svg>
+            </span>
+            <span data-plane className="absolute -top-0.5 -left-3.5 size-7">
+              <svg viewBox="0 0 32 32" className="size-full fill-ink">
+                <path d={PLANE} />
+              </svg>
+            </span>
+          </span>
         </div>
       </div>
     </div>
@@ -95,7 +146,7 @@ export default function Logbook() {
       tabIndex={-1}
       data-logbook
       aria-labelledby="experience-title"
-      className="relative border-t border-rule py-(--space-band) data-[mode=h]:flex data-[mode=h]:min-h-svh data-[mode=h]:items-center data-[mode=h]:overflow-clip data-[mode=h]:pt-(--space-7) data-[mode=h]:pb-(--space-9)"
+      className="relative border-t border-rule py-(--space-band) data-[mode=h]:flex data-[mode=h]:min-h-svh data-[mode=h]:items-center data-[mode=h]:overflow-clip data-[mode=h]:pt-(--space-7) data-[mode=h]:pb-[calc(var(--space-9)+var(--space-6))]"
     >
       <div className="shell">
         <div
@@ -106,16 +157,19 @@ export default function Logbook() {
             <h2 id="experience-title" data-reveal className="display text-section">
               {EXPERIENCE_TITLE}
             </h2>
-            <p className="mt-(--space-4) text-lg text-muted">Newest first.</p>
+            <p className="mt-(--space-4) text-lg text-muted">
+              <span className="logh:sr-only">Newest first.</span>
+              <span aria-hidden="true" className="hidden logh:inline">
+                From 2013 to now.
+              </span>
+            </p>
           </div>
 
-          <ol className="flex flex-col gap-(--space-8) logh:flex-row logh:gap-0">
+          {/* Sideways mode reverses only the visual order; DOM, reading and tab order stay newest first. */}
+          <ol className="flex flex-col gap-(--space-8) logh:flex-row-reverse logh:gap-0">
             {CHAPTERS.map((chapter) => (
               <li
                 key={chapter.id}
-                data-chapter
-                data-from={toYear(chapter.from)}
-                data-to={chapter.to ? toYear(chapter.to) : now}
                 aria-labelledby={`chapter-${chapter.id}`}
                 className="grid grid-cols-1 gap-(--space-6) border-t-2 border-ink pt-(--space-6) lg:grid-cols-12 logh:flex logh:flex-col logh:border-t-0 logh:border-l-2 logh:px-(--space-8) logh:pt-0"
               >
@@ -125,7 +179,7 @@ export default function Logbook() {
                   </h3>
                   <p className="num mt-(--space-3) text-lg text-muted logh:mt-0">{chapter.span}</p>
                 </header>
-                <div className="space-y-(--space-7) lg:col-span-7 logh:flex logh:gap-(--space-7) logh:space-y-0">
+                <div className="space-y-(--space-7) lg:col-span-7 logh:flex logh:flex-row-reverse logh:gap-(--space-7) logh:space-y-0">
                   {chapter.employers.map((employer) => (
                     <EmployerBlock key={employer.name} employer={employer} />
                   ))}
@@ -135,7 +189,7 @@ export default function Logbook() {
           </ol>
         </div>
       </div>
-      <YearScale now={now} />
+      <Runway now={now} />
     </section>
   );
 }

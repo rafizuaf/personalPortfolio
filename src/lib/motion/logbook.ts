@@ -1,8 +1,10 @@
 import { gsap, type MotionModule } from "./register";
 
-type Anchor = { x: number; year: number };
+/** Share of the pinned scroll spent taxiing through the years; the rest is the takeoff. */
+const TAKEOFF = 0.8;
+/** Share of the takeoff run spent on the ground before the wheels leave. */
+const ROTATE = 0.35;
 
-/** Desktop only: the logbook pins and its chapters scrub sideways, one trade after another. */
 export const logbook: MotionModule = ({ root, motion, desktop }) => {
   const section = root.querySelector<HTMLElement>("[data-logbook]");
   const track = root.querySelector<HTMLElement>("[data-logbook-track]");
@@ -17,60 +19,61 @@ export const logbook: MotionModule = ({ root, motion, desktop }) => {
     shell.getBoundingClientRect().left + parseFloat(getComputedStyle(shell).paddingLeft);
   const distance = () => Math.max(0, track.scrollWidth - window.innerWidth + inset() * 2);
 
-  // Chapter edges in track coordinates, each tied to a date: left edge = end of that trade, right edge = start.
-  let anchors: Anchor[] = [];
-  const measure = () => {
-    const origin = track.getBoundingClientRect().left;
-    anchors = [...track.querySelectorAll<HTMLElement>("[data-chapter]")].flatMap((chapter) => {
-      const box = chapter.getBoundingClientRect();
-      return [
-        { x: box.left - origin, year: Number(chapter.dataset.to) },
-        { x: box.right - origin, year: Number(chapter.dataset.from) },
-      ];
+  const plane = marker?.querySelector<HTMLElement>("[data-plane]");
+  const shadow = marker?.querySelector<HTMLElement>("[data-plane-shadow]");
+  const lights = scale
+    ? [...scale.querySelectorAll<HTMLElement>("[data-light]")].map((light) => ({
+        light,
+        year: Number(light.dataset.light),
+      }))
+    : [];
+  const setMarker = marker ? gsap.quickSetter(marker, "x", "px") : null;
+
+  // Position follows scroll progress directly, not the chapter in view: on wide screens most
+  // of the track is visible at once, and a content-mapped plane would race ahead of the text.
+  const placeMarker = (progress: number) => {
+    if (!scale || !setMarker || !plane || !shadow) return;
+    const { start, end, first, now } = scale.dataset;
+    const span = Number(end) - Number(start);
+    const clamp = gsap.utils.clamp(0, 1);
+    const year = Number(first) + clamp(progress / TAKEOFF) * (Number(now) - Number(first));
+    const parked = ((year - Number(start)) / span) * scale.offsetWidth;
+    const run = clamp((progress - TAKEOFF) / (1 - TAKEOFF));
+    // The takeoff roll accelerates from "now" to well past the far threshold.
+    setMarker(parked + run ** 2 * (scale.offsetWidth - parked + 160));
+
+    lights.forEach(({ light, year: at }) => light.classList.toggle("is-lit", at <= year));
+
+    // Seen from above, a climbing plane grows and its shadow falls away.
+    const climb = clamp((run - ROTATE) / (1 - ROTATE)) ** 1.5;
+    gsap.set(plane, {
+      scale: 1 + 1.3 * climb,
+      y: -36 * climb,
+      opacity: 1 - clamp((run - 0.8) / 0.2),
+    });
+    gsap.set(shadow, {
+      x: 2 + 28 * climb,
+      y: 3 + 24 * climb,
+      scale: 1 - 0.25 * climb,
+      opacity: 0.7 * (1 - climb),
     });
   };
 
-  const yearAt = (x: number) => {
-    if (!anchors.length) return 0;
-    if (x <= anchors[0].x) return anchors[0].year;
-    for (let i = 1; i < anchors.length; i++) {
-      const a = anchors[i - 1];
-      const b = anchors[i];
-      if (x <= b.x) return a.year + ((x - a.x) / (b.x - a.x || 1)) * (b.year - a.year);
-    }
-    return anchors[anchors.length - 1].year;
-  };
-
-  const setMarker = marker ? gsap.quickSetter(marker, "x", "px") : null;
-  const placeMarker = (progress: number) => {
-    if (!scale || !setMarker) return;
-    // The reading point sweeps from the left edge of the content to the right edge as the track scrubs.
-    const edge = inset();
-    const reading = edge + progress * (window.innerWidth - edge * 2);
-    const year = yearAt(reading - edge + distance() * progress);
-    const start = Number(scale.dataset.start);
-    const end = Number(scale.dataset.end);
-    setMarker(((year - start) / (end - start)) * scale.offsetWidth);
-  };
-
-  gsap.to(track, {
-    x: () => -distance(),
-    ease: "none",
+  const tl = gsap.timeline({
     scrollTrigger: {
       trigger: section,
       start: "top top",
-      end: () => `+=${distance()}`,
+      // At least a screen of scroll, so wide screens with little sideways travel still get a full takeoff roll.
+      end: () => `+=${Math.max(distance(), window.innerHeight) / TAKEOFF}`,
       scrub: true,
       pin: true,
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      onRefresh: (self) => {
-        measure();
-        placeMarker(self.progress);
-      },
+      onRefresh: (self) => placeMarker(self.progress),
       onUpdate: (self) => placeMarker(self.progress),
     },
   });
+  tl.to(track, { x: () => -distance(), ease: "none", duration: TAKEOFF }).to({}, { duration: 1 - TAKEOFF });
 
   return () => {
     delete section.dataset.mode;
