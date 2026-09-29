@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Big_Shoulders, IBM_Plex_Sans } from "next/font/google";
 import type { ReactNode } from "react";
 import MotionRoot from "@/components/motion/MotionRoot";
+import { PROFILE } from "@/content/profile";
+import { INDEXABLE, SITE_URL } from "@/lib/site";
 import "@/styles/globals.css";
 
 const display = Big_Shoulders({
@@ -19,26 +21,32 @@ const body = IBM_Plex_Sans({
   display: "swap",
 });
 
-const title = "Mukhtar Rafi Fauzi · Software Engineer, Jakarta";
-const description =
-  "Frontend-focused software engineer in Jakarta. Next.js, TypeScript and Tailwind CSS on internal business systems. Almost seven years in aircraft maintenance before that.";
-
-// Set NEXT_PUBLIC_SITE_URL to the production domain so share images resolve to absolute URLs.
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000");
+const fullName = PROFILE.name.join(" ");
+const title = `${fullName} · Software Engineer, Jakarta`;
+const description = `${fullName} is a frontend-focused software engineer in Jakarta, building internal business systems with Next.js, TypeScript and Tailwind CSS. Almost seven years in aircraft maintenance before that.`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title,
   description,
-  twitter: { card: "summary_large_image" },
+  applicationName: fullName,
+  authors: [{ name: fullName, url: SITE_URL }],
+  creator: fullName,
+  alternates: { canonical: "/" },
+  robots: INDEXABLE ? { index: true, follow: true } : { index: false, follow: false },
+  // Paste the content value of Search Console's "HTML tag" method into this env var.
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
+  twitter: { card: "summary_large_image", title, description },
   openGraph: {
     title,
     description,
-    type: "website",
+    url: "/",
+    siteName: fullName,
+    type: "profile",
+    firstName: "Mukhtar Rafi",
+    lastName: "Fauzi",
     locale: "en_US",
   },
 };

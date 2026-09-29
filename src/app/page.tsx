@@ -6,10 +6,12 @@ import Nav from "@/components/sections/Nav";
 import Stack from "@/components/sections/Stack";
 import Statement from "@/components/sections/Statement";
 import Work from "@/components/sections/Work";
+import StructuredData from "@/components/StructuredData";
 
 export default function HomePage() {
   return (
     <>
+      <StructuredData />
       <Nav />
       <main id="main" tabIndex={-1}>
         <Hero />
