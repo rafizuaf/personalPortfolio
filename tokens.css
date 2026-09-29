@@ -1,0 +1,67 @@
+/* Hallmark · tokens · theme: custom "taxi line" (vibe: asphalt, signage, taxiway yellow)
+ * paper-band: dark · display-style: display-condensed · accent-hue: warm (yellow, 90°)
+ * Tailwind v4 reads the @theme block as utilities (bg-paper, text-ink, font-display, text-hero).
+ * Everything else lives on :root and is referenced as var(--token).
+ */
+
+@theme {
+  --color-*: initial;
+  --color-paper: oklch(17% 0.008 250);
+  --color-paper-2: oklch(20.5% 0.009 250);
+  --color-paper-3: oklch(25% 0.01 250);
+  --color-ink: oklch(95% 0.005 90);
+  --color-muted: oklch(76% 0.01 250);
+  /* large text only (24px and up): 3:1 on paper, not 4.5:1 */
+  --color-dim: oklch(60% 0.01 250);
+  --color-rule: oklch(34% 0.01 250);
+  --color-accent: oklch(84% 0.17 90);
+  --color-accent-ink: oklch(17% 0.008 250);
+  --color-focus: oklch(84% 0.17 90);
+
+  --font-*: initial;
+  --font-display: var(--font-big-shoulders), "Arial Narrow", sans-serif;
+  --font-body: var(--font-plex-sans), system-ui, sans-serif;
+
+  --text-hero: clamp(4rem, 12vw + 2rem, 17rem);
+  --text-section: clamp(3rem, 6vw + 1.5rem, 9rem);
+  --text-chapter: clamp(3.5rem, 5vw + 2rem, 8rem);
+  --text-row: clamp(2.5rem, 5vw + 1rem, 7rem);
+  --text-marquee: clamp(4rem, 10vw + 1rem, 13rem);
+  --text-statement: clamp(1.625rem, 2.6vw + 0.9rem, 3.75rem);
+  --text-email: clamp(1.75rem, 8vw, 10rem);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+:root {
+  color-scheme: dark;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-band: clamp(96px, 12vw, 192px);
+
+  --gutter: clamp(20px, 4vw, 56px);
+  --shell-max: 1600px;
+  --nav-h: 64px;
+
+  --dur-fast: 160ms;
+  --dur: 240ms;
+  --dur-slow: 900ms;
+
+  --radius: 2px;
+  --rule-hair: 1px;
+  --rule-heavy: 2px;
+
+  --centerline-w: 3px;
+  --centerline-dash: 28px;
+  --centerline-gap: 20px;
+}

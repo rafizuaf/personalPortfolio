@@ -1,0 +1,25 @@
+import Contact from "@/components/sections/Contact";
+import Credentials from "@/components/sections/Credentials";
+import Hero from "@/components/sections/Hero";
+import Logbook from "@/components/sections/Logbook";
+import Nav from "@/components/sections/Nav";
+import Stack from "@/components/sections/Stack";
+import Statement from "@/components/sections/Statement";
+import Work from "@/components/sections/Work";
+
+export default function HomePage() {
+  return (
+    <>
+      <Nav />
+      <main id="main" tabIndex={-1}>
+        <Hero />
+        <Statement />
+        <Logbook />
+        <Work />
+        <Stack />
+        <Credentials />
+      </main>
+      <Contact />
+    </>
+  );
+}
