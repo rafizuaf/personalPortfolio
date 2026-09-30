@@ -21,7 +21,7 @@ function Ledger({ title, items }: { title: string; items: Credential[] }) {
               aria-hidden="true"
               className="row-span-2 mt-0.5 grid size-5 place-items-center border border-rule"
             >
-              <svg data-check viewBox="0 0 16 16" className="size-3.5 text-accent">
+              <svg data-check viewBox="0 0 16 16" className="size-3.5 text-accent-text">
                 <path
                   d="M2.5 8.5l3.5 3.5 7.5-8"
                   fill="none"

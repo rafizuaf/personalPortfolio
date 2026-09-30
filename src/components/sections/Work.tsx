@@ -32,7 +32,7 @@ function ProjectRow({ project }: { project: Project }) {
           {project.live ? (
             <a
               href={project.live.href}
-              className="transition-colors duration-(--dur-fast) hover:text-accent focus-visible:text-accent"
+              className="transition-colors duration-(--dur-fast) hover:text-accent-text focus-visible:text-accent-text"
               {...external}
             >
               {project.title}
@@ -112,7 +112,7 @@ export default function Work() {
                 <p className="mt-(--space-4) text-xl leading-snug font-semibold">{layer.title}</p>
                 <p className="mt-(--space-2) text-[0.9375rem] text-muted">{layer.detail}</p>
                 {i < PRODUCTION.layers.length - 1 && (
-                  <span aria-hidden="true" data-map-link className="map-link" />
+                  <span aria-hidden="true" data-map-link className="map-link marking" />
                 )}
               </li>
             ))}

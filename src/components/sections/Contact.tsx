@@ -4,7 +4,13 @@ const footLink =
   "inline-flex min-h-11 items-center font-semibold whitespace-nowrap underline decoration-1 underline-offset-[0.2em] hover:decoration-2";
 
 export default function Contact() {
-  const year = new Date().getFullYear();
+  const now = new Date();
+  const year = now.getFullYear();
+  const updated = new Intl.DateTimeFormat("en-GB", {
+    month: "short",
+    year: "numeric",
+    timeZone: "Asia/Jakarta",
+  }).format(now);
 
   return (
     <footer
@@ -46,14 +52,41 @@ export default function Contact() {
           <p className="flex min-h-11 items-center">{PROFILE.languages}</p>
         </div>
 
-        <div className="mt-(--space-7) flex flex-wrap items-center justify-between gap-(--space-4) text-sm">
-          <p>
-            © {year} {PROFILE.name.join(" ")}
-          </p>
-          <a className={footLink} href="#top">
-            Back to top
-          </a>
-        </div>
+        {/* A flight progress strip: dark paper strip with a coloured edge, one cell per field. */}
+        <dl className="strip night mt-(--space-7)">
+          <div className="strip__cell">
+            <dt className="strip__label">Callsign</dt>
+            <dd className="strip__value">{PROFILE.shortMark}</dd>
+          </div>
+          <div className="strip__cell">
+            <dt className="strip__label">Local</dt>
+            <dd className="strip__value">
+              <time data-clock="{time} WIB">{PROFILE.location}</time>
+            </dd>
+          </div>
+          <div className="strip__cell">
+            <dt className="strip__label">Status</dt>
+            <dd className="strip__value">{PROFILE.availability}</dd>
+          </div>
+          <div className="strip__cell">
+            <dt className="strip__label">Updated</dt>
+            <dd className="strip__value">{updated}</dd>
+          </div>
+          <div className="strip__cell">
+            <dt className="strip__label">©</dt>
+            <dd className="strip__value">
+              {year} {PROFILE.name.join(" ")}
+            </dd>
+          </div>
+          <div className="strip__cell">
+            <dt className="sr-only">Navigation</dt>
+            <dd>
+              <a className="strip__link" href="#top">
+                Back to top
+              </a>
+            </dd>
+          </div>
+        </dl>
       </div>
     </footer>
   );

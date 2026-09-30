@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import MotionRoot from "@/components/motion/MotionRoot";
 import { PROFILE } from "@/content/profile";
 import { INDEXABLE, SITE_URL } from "@/lib/site";
+import { THEME_COLOR, themeScript } from "@/lib/theme";
 import "@/styles/globals.css";
 
 const display = Big_Shoulders({
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0d1013",
+  themeColor: THEME_COLOR.night,
 };
 
 // Runs before paint: hides reveal targets only when motion is allowed, and
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script dangerouslySetInnerHTML={{ __html: motionGate }} />
       </head>
       <body>
@@ -76,7 +78,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
         <div className="centerline" aria-hidden="true">
-          <span className="centerline__paint" />
+          <span className="centerline__paint marking" />
         </div>
         <MotionRoot>{children}</MotionRoot>
       </body>

@@ -1,21 +1,6 @@
 import type { CSSProperties } from "react";
+import { PLANE, ThresholdKeys } from "@/components/runway";
 import { CHAPTERS, EXPERIENCE_TITLE, toYear, type Employer } from "@/content/experience";
-
-/** Top-down airliner, nose pointing right, in a 32-unit grid. */
-const PLANE =
-  "M30 16c0-1-1-1.6-2.4-1.6H19L12.5 3H10l3.2 11.4H7.5L4.8 10H3l1.4 6L3 22h1.8l2.7-4.4h5.7L10 29h2.5L19 17.6h8.6C29 17.6 30 17 30 16z";
-
-function ThresholdKeys({ side }: { side: "left" | "right" }) {
-  return (
-    <span
-      className={`absolute inset-y-1 flex flex-col justify-between ${side === "left" ? "left-1" : "right-1"}`}
-    >
-      {Array.from({ length: 4 }, (_, i) => (
-        <span key={i} className="block h-0.5 w-3 bg-ink/60" />
-      ))}
-    </span>
-  );
-}
 
 /** Only shown while the logbook runs sideways, where chapters are laid out oldest first to match it. */
 function Runway({ now }: { now: number }) {
@@ -80,7 +65,7 @@ function Runway({ now }: { now: number }) {
           <span data-logbook-marker className="absolute top-[22px] left-0 h-6 w-0">
             <span data-plane-shadow className="absolute -top-0.5 -left-3.5 size-7 opacity-70">
               <span data-bank className="block size-full">
-                <svg viewBox="0 0 32 32" className="size-full fill-paper">
+                <svg viewBox="0 0 32 32" className="size-full fill-shade">
                   <path d={PLANE} />
                 </svg>
               </span>

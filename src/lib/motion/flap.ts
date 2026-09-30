@@ -17,7 +17,8 @@ export function createFlap(cells: HTMLElement[]): Flap {
 
   const put = (i: number, char: string) => {
     shown[i] = char;
-    cells[i].textContent = char;
+    // A whitespace-only cell has no baseline, which makes the row taller and shifts the page below.
+    cells[i].textContent = char === " " ? "\u00a0" : char;
   };
 
   return {

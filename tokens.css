@@ -12,8 +12,12 @@
   --color-dim: oklch(60% 0.01 250);
   --color-rule: oklch(34% 0.01 250);
   --color-accent: oklch(84% 0.17 90);
+  /* yellow used as text or small icons; darkens by day where plain yellow can't reach 4.5:1 */
+  --color-accent-text: oklch(84% 0.17 90);
   --color-accent-ink: oklch(17% 0.008 250);
   --color-focus: oklch(84% 0.17 90);
+  /* ground shadow under the logbook plane: darker than the runway surface */
+  --color-shade: oklch(17% 0.008 250);
 
   --font-*: initial;
   --font-display: var(--font-big-shoulders), "Arial Narrow", sans-serif;
@@ -34,6 +38,11 @@
 
 :root {
   color-scheme: dark;
+
+  /* Airfield lights. On :root, not @theme: route.ts reads them from JS, and Tailwind drops
+     @theme colours that no CSS references. */
+  --color-stop: oklch(63% 0.22 27);
+  --color-lead: oklch(80% 0.19 150);
 
   --space-1: 4px;
   --space-2: 8px;
@@ -61,4 +70,32 @@
   --centerline-w: 3px;
   --centerline-dash: 28px;
   --centerline-gap: 20px;
+}
+
+/* Day operations: concrete greys. Set before paint by the head script in layout.tsx. */
+:root[data-theme="day"] {
+  color-scheme: light;
+
+  --color-paper: oklch(94% 0.004 250);
+  --color-paper-2: oklch(91% 0.005 250);
+  --color-paper-3: oklch(87% 0.006 250);
+  --color-ink: oklch(19% 0.008 250);
+  --color-muted: oklch(43% 0.01 250);
+  --color-dim: oklch(56% 0.01 250);
+  --color-rule: oklch(80% 0.006 250);
+  --color-accent-text: oklch(50% 0.13 75);
+  --color-focus: oklch(19% 0.008 250);
+  --color-shade: oklch(66% 0.008 250);
+}
+
+/* Night-only surfaces (flight strip, light housings) keep night values in either theme. */
+:root[data-theme="day"] .night {
+  --color-paper: oklch(17% 0.008 250);
+  --color-paper-2: oklch(20.5% 0.009 250);
+  --color-paper-3: oklch(25% 0.01 250);
+  --color-ink: oklch(95% 0.005 90);
+  --color-muted: oklch(76% 0.01 250);
+  --color-rule: oklch(34% 0.01 250);
+  --color-accent-text: oklch(84% 0.17 90);
+  --color-focus: oklch(84% 0.17 90);
 }

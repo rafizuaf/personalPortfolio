@@ -11,6 +11,9 @@ import { statement } from "./statement";
 import { work } from "./work";
 import { systemMap } from "./systemMap";
 import { checklist } from "./checklist";
+import { papi, signs } from "./instruments";
+import { boardingPass } from "./boardingPass";
+import { clock } from "./clock";
 
 // Order matters: pins are created top to bottom so ScrollTrigger measures them in page order.
 const MODULES: MotionModule[] = [
@@ -18,15 +21,19 @@ const MODULES: MotionModule[] = [
   nav,
   hero,
   board,
+  boardingPass,
   statement,
   logbook,
   systemMap,
   work,
   marquee,
   gateBoard,
+  clock,
   checklist,
   reveals,
   route,
+  signs,
+  papi,
 ];
 
 const QUERIES = {

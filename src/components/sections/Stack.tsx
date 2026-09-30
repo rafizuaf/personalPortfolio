@@ -11,7 +11,7 @@ function MarqueeRun() {
           <span className={`display text-marquee px-[0.18em] ${index % 2 ? "text-dim" : "text-ink"}`}>
             {tool}
           </span>
-          <span className="mx-[0.18em] block size-[0.14em] bg-accent text-marquee" />
+          <span className="mx-[0.18em] marking block size-[0.14em] bg-accent text-marquee" />
         </span>
       ))}
     </div>
@@ -21,7 +21,7 @@ function MarqueeRun() {
 /** Split-flap cells; the text is for sighted users only, the caller provides the accessible text. */
 function Tiles({ text, cells, accent }: { text: string; cells: number; accent?: boolean }) {
   return (
-    <span aria-hidden="true" data-flap-row className={`board board--gate ${accent ? "board--accent" : ""}`}>
+    <span aria-hidden="true" data-flap-row className={`board board--gate night ${accent ? "board--accent" : ""}`}>
       {[...text.toUpperCase().padEnd(cells)].map((char, i) => (
         <span key={i} data-cell className="board__cell">
           {char}
@@ -57,7 +57,7 @@ export default function Stack() {
           <div className="flex items-center justify-between gap-(--space-4) border-b border-rule px-(--space-5) py-(--space-3)">
             <p className={colHead}>Departures</p>
             <p className="num text-sm font-medium text-muted">
-              <span data-clock>{PROFILE.location}</span>
+              <time data-clock="Jakarta {time} WIB">{PROFILE.location}</time>
             </p>
           </div>
 

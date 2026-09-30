@@ -20,6 +20,7 @@ export const PROFILE = {
     fileName: "Mukhtar-Rafi-Fauzi-Resume.pdf",
   },
   location: "Jakarta, UTC+7",
+  availability: "Open to frontend roles",
   languages: "English C2 (EF SET 82/100) · Indonesian, native",
 } as const;
 

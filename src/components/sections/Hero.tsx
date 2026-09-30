@@ -5,6 +5,38 @@ const BOARD = PROFILE.board.map((word) => word.toUpperCase());
 const CELLS = Math.max(...BOARD.map((word) => word.length));
 const FINAL = BOARD[BOARD.length - 1].padEnd(CELLS);
 
+/** Decorative card behind the résumé button; revealed by CSS on hover or keyboard focus (mouse devices only). */
+function BoardingPass() {
+  const family = PROFILE.name[PROFILE.name.length - 1];
+  const field = (label: string, value: string) => (
+    <span className="flex flex-col">
+      <span className="pass__label">{label}</span>
+      <span className="pass__value">{value}</span>
+    </span>
+  );
+
+  return (
+    <div data-pass aria-hidden="true" className="pass night">
+      <div className="pass__main">
+        <p className="pass__band">Boarding pass</p>
+        <div className="grid grid-cols-2 gap-x-(--space-4) gap-y-(--space-2) p-(--space-3)">
+          <span className="col-span-2">
+            {field("Passenger", `${family}/${PROFILE.nickname} MR`.toUpperCase())}
+          </span>
+          {field("From", "JKT")}
+          {field("To", "Anywhere")}
+          {field("Gate", "A1")}
+          {field("Seat", "1A")}
+        </div>
+      </div>
+      <div data-pass-stub className="pass__stub">
+        <span className="pass__barcode" />
+        <span className="pass__value">1A</span>
+      </div>
+    </div>
+  );
+}
+
 export default function Hero() {
   return (
     <section
@@ -26,7 +58,7 @@ export default function Hero() {
               >
                 {line.split(new RegExp(`(${PROFILE.nickname})`)).map((part, j) =>
                   part === PROFILE.nickname ? (
-                    <span key={j} className="text-accent">
+                    <span key={j} className="nick text-accent">
                       {part}
                     </span>
                   ) : (
@@ -48,7 +80,7 @@ export default function Hero() {
               <span
                 data-board
                 data-sequence={BOARD.map((word) => word.padEnd(CELLS)).join("|")}
-                className="board"
+                className="board night"
               >
                 {[...FINAL].map((char, i) => (
                   <span key={i} data-cell className="board__cell">
@@ -58,17 +90,21 @@ export default function Hero() {
               </span>{" "}
               {PROFILE.boardTail}
             </span>{" "}
-            <span className="text-accent">{PROFILE.roleAccent}</span>
+            <span className="text-accent-text">{PROFILE.roleAccent}</span>
           </p>
           <p className="max-w-[46ch] text-muted md:col-span-7 lg:col-span-5">{PROFILE.lede}</p>
           <div className="flex flex-wrap gap-(--space-3) md:col-span-12 lg:col-span-3 lg:flex-col lg:items-end">
-            <a
-              className="btn btn--primary"
-              href={PROFILE.resume.href}
-              download={PROFILE.resume.fileName}
-            >
-              Download résumé (PDF)
-            </a>
+            <div className="pass-anchor relative">
+              <a
+                data-pass-trigger
+                className="btn btn--primary"
+                href={PROFILE.resume.href}
+                download={PROFILE.resume.fileName}
+              >
+                Download résumé (PDF)
+              </a>
+              <BoardingPass />
+            </div>
             <a className="btn btn--ghost" href={`mailto:${PROFILE.email}`}>
               Send an email
             </a>

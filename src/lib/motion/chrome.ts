@@ -52,14 +52,16 @@ export const nav: MotionModule = ({ root, lenis }) => {
 export const reveals: MotionModule = ({ root, motion }) => {
   if (!motion) return;
 
-  const accent = getComputedStyle(document.documentElement).getPropertyValue("--color-accent").trim();
   const splits: SplitText[] = [];
+  // Read when each flash starts, not at load, so a theme switch in between uses the right colours.
+  const accent = () =>
+    getComputedStyle(document.documentElement).getPropertyValue("--color-accent-text").trim();
 
   root.querySelectorAll<HTMLElement>("h2[data-reveal]").forEach((title) => {
     const split = SplitText.create(title, { type: "words,chars" });
     splits.push(split);
     const chars = split.chars as HTMLElement[];
-    const settled = getComputedStyle(title).color;
+    const settled = () => getComputedStyle(title).color;
     const flash = title.closest(".slab") ? null : accent;
     const stagger = Math.min(0.045, 0.9 / chars.length);
 
