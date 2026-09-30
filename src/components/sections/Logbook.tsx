@@ -79,14 +79,18 @@ function Runway({ now }: { now: number }) {
 
           <span data-logbook-marker className="absolute top-[22px] left-0 h-6 w-0">
             <span data-plane-shadow className="absolute -top-0.5 -left-3.5 size-7 opacity-70">
-              <svg viewBox="0 0 32 32" className="size-full fill-paper">
-                <path d={PLANE} />
-              </svg>
+              <span data-bank className="block size-full">
+                <svg viewBox="0 0 32 32" className="size-full fill-paper">
+                  <path d={PLANE} />
+                </svg>
+              </span>
             </span>
             <span data-plane className="absolute -top-0.5 -left-3.5 size-7">
-              <svg viewBox="0 0 32 32" className="size-full fill-ink">
-                <path d={PLANE} />
-              </svg>
+              <span data-bank className="block size-full">
+                <svg viewBox="0 0 32 32" className="size-full fill-ink">
+                  <path d={PLANE} />
+                </svg>
+              </span>
             </span>
           </span>
         </div>
@@ -146,7 +150,7 @@ export default function Logbook() {
       tabIndex={-1}
       data-logbook
       aria-labelledby="experience-title"
-      className="relative border-t border-rule py-(--space-band) data-[mode=h]:flex data-[mode=h]:min-h-svh data-[mode=h]:items-center data-[mode=h]:overflow-clip data-[mode=h]:pt-(--space-7) data-[mode=h]:pb-[calc(var(--space-9)+var(--space-6))]"
+      className="relative border-t border-rule py-(--space-band) data-[mode=h]:flex data-[mode=h]:min-h-svh data-[mode=h]:items-center data-[mode=h]:overflow-clip data-[mode=h]:clip-rail data-[mode=h]:pt-(--space-7) data-[mode=h]:pb-[calc(var(--space-9)+var(--space-6))]"
     >
       <div className="shell">
         <div

@@ -5,6 +5,11 @@
 @custom-variant logh (&:where([data-mode="h"] *));
 @custom-variant preview (&:where(.has-preview *));
 
+/* Full-bleed content that runs sideways stops just short of the taxiway line at x = gutter / 2. */
+@utility clip-rail {
+  clip-path: inset(0 0 0 calc(var(--gutter) / 2 + 8px));
+}
+
 @layer base {
   html,
   body {
@@ -259,14 +264,16 @@
       box-shadow var(--dur) var(--ease-out);
   }
 
+  /* !important outranks the running animation, so passed lights hold steady without it restarting. */
   .runway-light.is-lit {
-    background: var(--color-accent);
-    box-shadow: 0 16px 0 var(--color-accent);
+    background: var(--color-accent) !important;
+    box-shadow: 0 16px 0 var(--color-accent) !important;
   }
 
-  /* Sequenced flashers ("the rabbit"): one flash runs ahead of the plane toward the takeoff end. */
+  /* Sequenced flashers ("the rabbit"): one flash runs ahead of the plane toward the takeoff end.
+     Every light keeps the animation, so the sequence stays in phase however often lights toggle. */
   @media (prefers-reduced-motion: no-preference) {
-    .runway-light:not(.is-lit) {
+    .runway-light {
       animation: runway-rabbit 1.8s linear infinite;
       animation-delay: calc(var(--i, 0) * 0.06s);
     }

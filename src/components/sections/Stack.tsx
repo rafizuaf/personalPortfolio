@@ -41,7 +41,7 @@ export default function Stack() {
       aria-labelledby="stack-title"
       className="relative overflow-clip border-t border-rule py-(--space-band)"
     >
-      <div data-marquee aria-hidden="true" className="overflow-clip">
+      <div data-marquee aria-hidden="true" className="clip-rail overflow-clip">
         <div data-marquee-track className="flex w-max">
           <MarqueeRun />
           <MarqueeRun />
