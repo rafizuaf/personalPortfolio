@@ -5,6 +5,8 @@ export type ExternalLink = {
 
 export const PROFILE = {
   name: ["Mukhtar Rafi", "Fauzi"],
+  /** The name people use; highlighted inside `name` in the hero. */
+  nickname: "Rafi",
   shortMark: "MRF",
   role: "Software engineer in Jakarta.",
   roleAccent: "Frontend first.",

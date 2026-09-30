@@ -24,7 +24,15 @@ export default function Hero() {
                 className="hero-line block"
                 style={{ "--i": i } as CSSProperties}
               >
-                {line}
+                {line.split(new RegExp(`(${PROFILE.nickname})`)).map((part, j) =>
+                  part === PROFILE.nickname ? (
+                    <span key={j} className="text-accent">
+                      {part}
+                    </span>
+                  ) : (
+                    part
+                  ),
+                )}
               </span>
             ))}
           </span>
