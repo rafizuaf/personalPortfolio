@@ -7,8 +7,9 @@ export const BRAND = {
   accent: "#f5c40d",
 } as const;
 
-/** Same mark as src/app/icon.svg, in a 32-unit grid. */
-export const MARK_PATH = "M12 25V7h4.6l3 8.6 3-8.6H27v18h-3.6V14.2l-2.7 7.8h-2.2l-2.7-7.8V25z";
+/** Same "R" (for Rafi) as src/app/icon.svg, in a 32-unit grid; the counter needs evenodd fill. */
+export const MARK_PATH =
+  "M12 25V7h9.5c3 0 4.9 1.8 4.9 4.9v.8c0 2.1-1 3.6-2.7 4.3L27 25h-3.9L20 17.4h-4.4V25zM15.6 10.3v3.9H21c1.2 0 1.8-.6 1.8-1.7v-.5c0-1.1-.6-1.7-1.8-1.7z";
 
 /** Returns null offline so image generation falls back to the default font instead of failing the build. */
 export async function loadGoogleFont(family: string, weight: number, text: string) {

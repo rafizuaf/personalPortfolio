@@ -11,6 +11,7 @@ const GAP = 40;
 
 export default async function OpengraphImage() {
   const name = PROFILE.name.map((line) => line.toUpperCase());
+  const nickname = PROFILE.nickname.toUpperCase();
   const [display, body] = await Promise.all([
     loadGoogleFont("Big Shoulders", 800, name.join("")),
     loadGoogleFont("IBM Plex Sans", 500, `${PROFILE.role} ${PROFILE.roleAccent}`),
@@ -71,7 +72,13 @@ export default async function OpengraphImage() {
             }}
           >
             {name.map((line) => (
-              <span key={line}>{line}</span>
+              <div key={line} style={{ display: "flex" }}>
+                {line.split(new RegExp(`(${nickname})`)).map((part, j) => (
+                  <span key={j} style={{ color: part === nickname ? BRAND.accent : BRAND.ink }}>
+                    {part.replace(/ /g, "\u00a0")}
+                  </span>
+                ))}
+              </div>
             ))}
           </div>
         </div>

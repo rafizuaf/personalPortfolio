@@ -13,7 +13,7 @@ export default function AppleIcon() {
         <rect x="5" y="0" width="3" height="8" fill={BRAND.accent} />
         <rect x="5" y="12" width="3" height="8" fill={BRAND.accent} />
         <rect x="5" y="24" width="3" height="8" fill={BRAND.accent} />
-        <path d={MARK_PATH} fill={BRAND.ink} />
+        <path d={MARK_PATH} fill={BRAND.accent} fillRule="evenodd" />
       </svg>
     ),
     size,
