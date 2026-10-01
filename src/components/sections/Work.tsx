@@ -47,7 +47,7 @@ function ProjectRow({ project }: { project: Project }) {
           <p className="mt-(--space-2) text-sm text-muted">{project.stack.join(" · ")}</p>
           <ProjectLinks project={project} />
         </div>
-        <figure className="relative aspect-[16/10] overflow-clip border border-rule bg-paper-2 lg:col-span-7 preview:sr-only">
+        <figure className="relative aspect-16/10 overflow-clip border border-rule bg-paper-2 lg:col-span-7 preview:sr-only">
           <Image
             src={project.image}
             alt={project.imageAlt}
@@ -130,7 +130,7 @@ export default function Work() {
       <div
         data-preview
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-30 hidden aspect-[16/10] w-[min(30vw,440px)] overflow-clip border border-rule bg-paper-2 opacity-0 preview:block"
+        className="pointer-events-none fixed top-0 left-0 z-30 hidden aspect-16/10 w-[min(30vw,440px)] overflow-clip border border-rule bg-paper-2 opacity-0 preview:block"
       >
         {PROJECTS.map((project) => (
           <Image

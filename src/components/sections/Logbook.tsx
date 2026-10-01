@@ -38,7 +38,7 @@ function Runway({ now }: { now: number }) {
             );
           })}
 
-          <div className="absolute inset-x-0 top-[22px] h-6 rounded-(--radius) bg-paper-3">
+          <div className="absolute inset-x-0 top-5.5 h-6 rounded-(--radius) bg-paper-3">
             <span className="absolute inset-x-6 top-1/2 h-px -translate-y-1/2 bg-[repeating-linear-gradient(to_right,var(--color-ink)_0_10px,transparent_10px_18px)] opacity-50" />
             <ThresholdKeys side="left" />
             <ThresholdKeys side="right" />
@@ -55,14 +55,14 @@ function Runway({ now }: { now: number }) {
           {years.map((year) => (
             <span
               key={year}
-              className="num absolute top-[52px] -translate-x-1/2 text-xs leading-none text-muted"
+              className="num absolute top-13 -translate-x-1/2 text-xs leading-none text-muted"
               style={{ left: at(year) }}
             >
               {year}
             </span>
           ))}
 
-          <span data-logbook-marker className="absolute top-[22px] left-0 h-6 w-0">
+          <span data-logbook-marker className="absolute top-5.5 left-0 h-6 w-0">
             <span data-plane-shadow className="absolute -top-0.5 -left-3.5 size-7 opacity-70">
               <span data-bank className="block size-full">
                 <svg viewBox="0 0 32 32" className="size-full fill-shade">
@@ -88,7 +88,7 @@ function EmployerBlock({ employer }: { employer: Employer }) {
   const meta = [employer.context, employer.place].filter(Boolean).join(" · ");
 
   return (
-    <article className="logh:w-[400px] logh:shrink-0">
+    <article className="logh:w-100 logh:shrink-0">
       <h4 className="text-lg leading-snug font-semibold">
         {employer.name}
         {employer.alias ? (
