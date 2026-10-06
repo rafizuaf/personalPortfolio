@@ -1,4 +1,5 @@
 import { MARQUEE, STACK, STACK_TITLE } from "@/content/stack";
+import Tiles from "@/components/Tiles";
 import { PROFILE } from "@/content/profile";
 
 const LAYER_CELLS = Math.max(...STACK.map((row) => row.layer.length));
@@ -15,19 +16,6 @@ function MarqueeRun() {
         </span>
       ))}
     </div>
-  );
-}
-
-/** Split-flap cells; the text is for sighted users only, the caller provides the accessible text. */
-function Tiles({ text, cells, accent }: { text: string; cells: number; accent?: boolean }) {
-  return (
-    <span aria-hidden="true" data-flap-row className={`board board--gate night ${accent ? "board--accent" : ""}`}>
-      {[...text.toUpperCase().padEnd(cells)].map((char, i) => (
-        <span key={i} data-cell className="board__cell">
-          {char}
-        </span>
-      ))}
-    </span>
   );
 }
 

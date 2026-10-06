@@ -49,7 +49,7 @@ export const CHAPTERS: Chapter[] = [
           { title: "Software Engineer", period: "Mar 2024–Feb 2026" },
         ],
         notes: [
-          "Payment approval and asset management system for Samudera Indonesia, in Next.js and TypeScript.",
+          "Payment approval and asset management systems for several Samudera Indonesia subsidiaries, plus an in-house CRM, in Next.js and TypeScript.",
           "Asset management module with dynamic form validation in Zod and React Hook Form.",
           "Interface work in Tailwind CSS and Ant Design, built for responsive layouts and fast interactions.",
           "Relational data across several departments with Prisma and MySQL.",

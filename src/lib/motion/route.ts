@@ -1,3 +1,4 @@
+import { collect } from "@/lib/stamps";
 import { gsap, ScrollTrigger, type MotionModule } from "./register";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
@@ -99,7 +100,7 @@ export const route: MotionModule = ({ root, motion }) => {
     const gap = parseFloat(getComputedStyle(lastSection).paddingBottom);
     const contactTop = contact.getBoundingClientRect().top + window.scrollY;
     const turnY = contactTop - gap / 2;
-    const radius = Math.min(48, gap / 2 - 8);
+    const radius = Math.max(0, Math.min(48, gap / 2 - 8));
     // Room past the marking for the lead-on lights to continue the centreline and curve down.
     const endX = width - x - 40 - LEAD_RUN;
 
@@ -130,15 +131,16 @@ export const route: MotionModule = ({ root, motion }) => {
     // Lead-on lights sit on the centreline past the marking, then curve onto the "runway" (the contact slab).
     // The curve ends at width - x, mirroring the rail on the left edge.
     const startX = endX + 48;
-    const bend = Math.min(24, gap / 2 - 12);
+    const bend = Math.max(0, Math.min(24, gap / 2 - 12));
     const turnX = width - x - bend;
     leadGuide.setAttribute(
       "d",
       `M${startX},${turnY} H${turnX} Q${turnX + bend},${turnY} ${turnX + bend},${turnY + bend} V${contactTop - 6}`,
     );
     const leads: SVGGElement[] = [];
+    // Measured before styles settle (a client navigation, a dev reload), the guide can be empty; the next refresh rebuilds it.
     const guideLength = leadGuide.getTotalLength();
-    for (let at = 0; at <= guideLength; at += LEAD_STEP) {
+    for (let at = 0; guideLength > 0 && at <= guideLength; at += LEAD_STEP) {
       const point = leadGuide.getPointAtLength(at);
       leads.push(lamp(point.x, point.y, 2.2));
     }
@@ -174,6 +176,7 @@ export const route: MotionModule = ({ root, motion }) => {
 
   const setStage = (next: Stage, instant = false) => {
     if (next === stage && !instant) return;
+    if (stage === "holding" && next === "cleared") collect("hold");
     stage = next;
     window.clearTimeout(timer);
     if (next === "holding") timer = window.setTimeout(() => setStage("cleared"), AUTO_CLEAR_MS);
@@ -191,8 +194,12 @@ export const route: MotionModule = ({ root, motion }) => {
   };
 
   const update = (scroll: number) => {
+    // After the head reaches the turn, the turn and the run across paint while the turn rises to HOLD_AT.
+    const q = gsap.utils.clamp(0, 1, (scroll - turnStart) / Math.max(1, turnEnd - turnStart));
     if (!motion) {
       paintTo(length);
+      // No hold to wait through here, so reaching the hold-short is enough.
+      if (q > 0.97) collect("hold");
       return setStage("cleared");
     }
     const head = scroll + window.innerHeight * HEAD;
@@ -200,8 +207,6 @@ export const route: MotionModule = ({ root, motion }) => {
       paintTo(head);
       return setStage("hidden");
     }
-    // After the head reaches the turn, the turn and the run across paint while the turn rises to HOLD_AT.
-    const q = gsap.utils.clamp(0, 1, (scroll - turnStart) / Math.max(1, turnEnd - turnStart));
     paintTo(railLength + q * (length - railLength));
     if (q > 0.97) {
       if (stage === "hidden") setStage("holding");

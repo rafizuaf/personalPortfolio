@@ -1,3 +1,5 @@
+import StampCell from "@/components/stamps/StampCell";
+import TowerRadio from "@/components/TowerRadio";
 import { CONTACT, PROFILE, SOCIAL } from "@/content/profile";
 
 const footLink =
@@ -31,6 +33,8 @@ export default function Contact() {
         >
           {PROFILE.email}
         </a>
+
+        <TowerRadio />
 
         <div className="mt-(--space-9) grid grid-cols-1 gap-(--space-5) border-t border-accent-ink pt-(--space-5) sm:grid-cols-2 lg:grid-cols-4">
           <ul className="flex flex-wrap gap-x-(--space-5)">
@@ -78,6 +82,7 @@ export default function Contact() {
               {year} {PROFILE.name.join(" ")}
             </dd>
           </div>
+          <StampCell />
           <div className="strip__cell">
             <dt className="sr-only">Navigation</dt>
             <dd>

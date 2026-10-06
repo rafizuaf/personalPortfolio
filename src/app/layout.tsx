@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Big_Shoulders, IBM_Plex_Sans } from "next/font/google";
+import { Big_Shoulders, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import type { ReactNode } from "react";
 import MotionRoot from "@/components/motion/MotionRoot";
+import StampToaster from "@/components/stamps/StampToaster";
 import { PROFILE } from "@/content/profile";
 import { INDEXABLE, SITE_URL } from "@/lib/site";
 import { THEME_COLOR, themeScript } from "@/lib/theme";
@@ -20,6 +21,14 @@ const body = IBM_Plex_Sans({
   subsets: ["latin"],
   variable: "--font-plex-sans",
   display: "swap",
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
+  display: "swap",
+  preload: false,
 });
 
 const fullName = PROFILE.name.join(" ");
@@ -66,7 +75,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable}`}
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -80,6 +89,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <div className="centerline" aria-hidden="true">
           <span className="centerline__paint marking" />
         </div>
+        <StampToaster />
         <MotionRoot>{children}</MotionRoot>
       </body>
     </html>

@@ -22,6 +22,7 @@
   --font-*: initial;
   --font-display: var(--font-big-shoulders), "Arial Narrow", sans-serif;
   --font-body: var(--font-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 
   --text-hero: clamp(4rem, 12vw + 2rem, 17rem);
   --text-section: clamp(3rem, 6vw + 1.5rem, 9rem);
@@ -30,6 +31,7 @@
   --text-marquee: clamp(4rem, 10vw + 1rem, 13rem);
   --text-statement: clamp(1.625rem, 2.6vw + 0.9rem, 3.75rem);
   --text-email: clamp(1.75rem, 8vw, 10rem);
+  --text-readout: clamp(3rem, 4vw + 1.5rem, 6rem);
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in: cubic-bezier(0.55, 0, 1, 0.45);

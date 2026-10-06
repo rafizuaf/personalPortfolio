@@ -33,11 +33,11 @@ export const WORK_TITLE = "Work";
 export const WORK_INTRO = "Production work first. Personal projects after.";
 
 export const PRODUCTION: ProductionWork = {
-  title: "Payment approval and asset management",
+  title: "Payment approval, asset management and CRM",
   org: "Samudera Indonesia's IT arm",
   period: "2024–now",
   summary:
-    "One internal system for a logistics and shipping group: payment approvals in one module, asset records in another, on relational data shared by several departments.",
+    "Internal systems for a logistics and shipping group: payment approval and asset management for several subsidiaries, and an in-house CRM, on relational data shared across departments.",
   stack: ["Next.js", "TypeScript", "Tailwind CSS", "Ant Design", "Prisma", "MySQL"],
   availability: "Internal system, no public demo",
   layers: [
@@ -47,9 +47,9 @@ export const PRODUCTION: ProductionWork = {
       detail: "Screens in Tailwind CSS and Ant Design, built for responsive layouts.",
     },
     {
-      layer: "Modules",
-      title: "Payment approval, asset management",
-      detail: "Two modules inside the same internal system.",
+      layer: "Systems",
+      title: "Payment approval, asset management, CRM",
+      detail: "Approval and asset systems for several subsidiaries, plus an in-house CRM.",
     },
     {
       layer: "Forms",

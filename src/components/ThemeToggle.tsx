@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { collect } from "@/lib/stamps";
 import { THEME_COLOR, THEME_KEY, type Theme } from "@/lib/theme";
 
 const readSaved = (): Theme | null => {
@@ -55,6 +56,7 @@ export default function ThemeToggle() {
       localStorage.setItem(THEME_KEY, next);
     } catch {}
     setTheme(next);
+    collect("shift");
 
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (!document.startViewTransition || reduced || !button.current) return applyInstantly(next);

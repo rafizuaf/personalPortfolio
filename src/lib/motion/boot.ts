@@ -14,6 +14,7 @@ import { checklist } from "./checklist";
 import { papi, signs } from "./instruments";
 import { boardingPass } from "./boardingPass";
 import { clock } from "./clock";
+import { readouts } from "./readouts";
 
 // Order matters: pins are created top to bottom so ScrollTrigger measures them in page order.
 const MODULES: MotionModule[] = [
@@ -23,6 +24,7 @@ const MODULES: MotionModule[] = [
   board,
   boardingPass,
   statement,
+  readouts,
   logbook,
   systemMap,
   work,
@@ -43,12 +45,24 @@ const QUERIES = {
   finePointer: "(hover: hover) and (pointer: fine)",
 };
 
+/** Pins add their spacers after the browser's own hash jump, so arriving at /#section lands short; jump again. */
+function landOnHash(lenis: Lenis | null) {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const target = id && id !== "top" ? document.getElementById(id) : null;
+  if (!target) return;
+  const y = target.getBoundingClientRect().top + window.scrollY;
+  if (lenis) lenis.scrollTo(y, { immediate: true, force: true });
+  else window.scrollTo(0, y);
+}
+
 /** Loaded after first paint by MotionRoot. Returns a teardown for unmount. */
 export function startMotion(root: HTMLElement) {
   registerGsap();
 
   const html = document.documentElement;
   const mm = gsap.matchMedia();
+  let landed = false;
+  let stopped = false;
 
   // Re-runs from scratch whenever any query flips (resize, OS motion setting).
   mm.add(QUERIES, (context) => {
@@ -79,15 +93,20 @@ export function startMotion(root: HTMLElement) {
     }
 
     ScrollTrigger.refresh();
+    if (!landed) {
+      landed = true;
+      landOnHash(lenis);
+    }
 
     return () => {
       cleanups.reverse().forEach((cleanup) => cleanup());
     };
   });
 
-  let stopped = false;
   document.fonts?.ready.then(() => {
-    if (!stopped) ScrollTrigger.refresh();
+    if (stopped) return;
+    ScrollTrigger.refresh();
+    landOnHash(null);
   });
 
   return () => {

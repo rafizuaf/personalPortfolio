@@ -1,4 +1,5 @@
-import { gsap, type MotionModule } from "./register";
+import { collect } from "@/lib/stamps";
+import { gsap, ScrollTrigger, type MotionModule } from "./register";
 
 /** Share of the pinned scroll spent taxiing through the years; the rest is the takeoff. */
 const TAKEOFF = 0.8;
@@ -11,7 +12,16 @@ export const logbook: MotionModule = ({ root, motion, desktop }) => {
   const shell = track?.parentElement;
   const scale = root.querySelector<HTMLElement>("[data-logbook-scale]");
   const marker = root.querySelector<HTMLElement>("[data-logbook-marker]");
-  if (!section || !track || !shell || !motion || !desktop) return;
+  if (!section) return;
+  if (!track || !shell || !motion || !desktop) {
+    const passed = ScrollTrigger.create({
+      trigger: section,
+      start: "bottom bottom",
+      once: true,
+      onEnter: () => collect("takeoff"),
+    });
+    return () => passed.kill();
+  }
 
   section.dataset.mode = "h";
 
@@ -123,7 +133,10 @@ export const logbook: MotionModule = ({ root, motion, desktop }) => {
         if (self.progress === 1) faceHome();
       },
       onUpdate: (self) => placeMarker(self.progress, self.direction),
-      onLeave: faceHome,
+      onLeave: () => {
+        faceHome();
+        collect("takeoff");
+      },
     },
   });
   tl.to(track, { x: () => -distance(), ease: "none", duration: TAKEOFF }).to({}, { duration: 1 - TAKEOFF });

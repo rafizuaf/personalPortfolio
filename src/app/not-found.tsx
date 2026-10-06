@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PLANE, ThresholdKeys } from "@/components/runway";
+import StampOnMount from "@/components/stamps/StampOnMount";
 
 export default function NotFound() {
   return (
@@ -25,8 +26,9 @@ export default function NotFound() {
 
       <h1 className="mt-8 text-2xl font-semibold">Runway not found. Go around.</h1>
       <p className="mt-3 max-w-[46ch] text-muted">
-        The address may be old or mistyped. Everything lives on one page now.
+        The address may be old or mistyped. Most of it lives on one page now.
       </p>
+      <StampOnMount id="goaround" />
       <div className="mt-8">
         <Link className="btn btn--primary" href="/">
           Back to the portfolio

@@ -27,6 +27,20 @@ export const PROFILE = {
 export const STATEMENT =
   "For almost seven years I kept aircraft airworthy, first as a technician, then as a planning engineer. In 2023 I retrained as a software engineer and brought the habits with me: follow the procedure, keep the record, write down what changed.";
 
+export type Readout = {
+  value: string;
+  unit?: string;
+  label: string;
+  /** How the value arrives on scroll: counted up from zero, or flapped in like the departure board. */
+  motion: "count" | "flap";
+};
+
+export const FLIGHT_DATA: Readout[] = [
+  { value: "~7", unit: "yrs", label: "Aircraft maintenance", motion: "count" },
+  { value: "2023", label: "Shipping web apps since", motion: "flap" },
+  { value: "5", label: "Enterprise systems at Samudera Indonesia", motion: "count" },
+];
+
 export const SOCIAL: ExternalLink[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/rafizuaf" },
   { label: "GitHub", href: "https://github.com/rafizuaf" },

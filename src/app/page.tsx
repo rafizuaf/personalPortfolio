@@ -1,6 +1,7 @@
 import Contact from "@/components/sections/Contact";
 import Credentials from "@/components/sections/Credentials";
 import Hero from "@/components/sections/Hero";
+import Log from "@/components/sections/Log";
 import Logbook from "@/components/sections/Logbook";
 import Nav from "@/components/sections/Nav";
 import Stack from "@/components/sections/Stack";
@@ -20,6 +21,7 @@ export default function HomePage() {
         <Work />
         <Stack />
         <Credentials />
+        <Log />
       </main>
       <Contact />
     </>
